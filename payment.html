@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - OPSMS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="payment.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-logo">
+                <img src="images/Gemini_Generated_Image_wafkqlwafkqlwafk.png" alt="OPSMS Logo">
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/products.html" class="nav-link">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/customize.html" class="nav-link">Customize</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="/cart.html" class="cart-button">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <a href="/login.html" class="login-button">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="payment-container">
+        <h1>Payment Details</h1>
+        
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <div class="summary-item">
+                <span>Subtotal:</span>
+                <span>₱1,500.00</span>
+            </div>
+            <div class="summary-item">
+                <span>Shipping:</span>
+                <span>₱100.00</span>
+            </div>
+            <div class="summary-item total">
+                <span>Total:</span>
+                <span>₱1,600.00</span>
+            </div>
+        </div>
+
+        <div class="payment-methods">
+            <h2>Select Payment Method</h2>
+            
+            <div class="payment-options">
+                <div class="payment-option" data-method="gcash">
+                    <input type="radio" name="payment" id="gcash" value="gcash">
+                    <label for="gcash">
+                        <img src="/images/gcash-logo.png" alt="GCash">
+                        <span>GCash</span>
+                    </label>
+                </div>
+
+                <div class="payment-option" data-method="maya">
+                    <input type="radio" name="payment" id="maya" value="maya">
+                    <label for="maya">
+                        <img src="/images/maya-logo.png" alt="Maya">
+                        <span>Maya</span>
+                    </label>
+                </div>
+
+                <div class="payment-option" data-method="bank">
+                    <input type="radio" name="payment" id="bank" value="bank">
+                    <label for="bank">
+                        <i class="fas fa-university"></i>
+                        <span>Online Banking</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="payment-details">
+                <!-- GCash Payment Form -->
+                <div class="payment-form gcash-form" style="display: none;">
+                    <h3>GCash Payment</h3>
+                    <div class="form-group">
+                        <label for="gcash-number">GCash Number</label>
+                        <input type="tel" id="gcash-number" placeholder="Enter your GCash number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gcash-name">Account Name</label>
+                        <input type="text" id="gcash-name" placeholder="Enter account name" required>
+                    </div>
+                </div>
+
+                <!-- Maya Payment Form -->
+                <div class="payment-form maya-form" style="display: none;">
+                    <h3>Maya Payment</h3>
+                    <div class="form-group">
+                        <label for="maya-number">Maya Number</label>
+                        <input type="tel" id="maya-number" placeholder="Enter your Maya number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="maya-name">Account Name</label>
+                        <input type="text" id="maya-name" placeholder="Enter account name" required>
+                    </div>
+                </div>
+
+                <!-- Online Banking Form -->
+                <div class="payment-form bank-form" style="display: none;">
+                    <h3>Online Banking</h3>
+                    <div class="form-group">
+                        <label for="bank-select">Select Bank</label>
+                        <select id="bank-select" required>
+                            <option value="">Select a bank</option>
+                            <option value="bdo">BDO</option>
+                            <option value="bpi">BPI</option>
+                            <option value="metrobank">Metrobank</option>
+                            <option value="unionbank">Unionbank</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="account-number">Account Number</label>
+                        <input type="text" id="account-number" placeholder="Enter account number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="account-name">Account Name</label>
+                        <input type="text" id="account-name" placeholder="Enter account name" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="payment-actions">
+            <button class="back-button" onclick="window.history.back()">Back</button>
+            <button class="pay-button" id="payButton">Pay Now</button>
+        </div>
+    </div>
+
+    <script src="payment.js"></script>
+</body>
+</html> 

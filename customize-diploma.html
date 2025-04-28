@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Diploma</title>
+    <link rel="stylesheet" href="customize-base.css">
+    <link rel="stylesheet" href="customize-diploma.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="diploma-customization">
+        <h1>Customize Your Diploma</h1>
+        
+        <form id="diplomaForm">
+            <div class="diploma-options">
+                <!-- Paper Type Options -->
+                <div class="option-group">
+                    <h3>Paper Type</h3>
+                    <label for="paperType">Select Paper Quality</label>
+                    <select id="paperType" name="paperType" required>
+                        <option value="">Choose Paper Type</option>
+                        <option value="premium">Premium Paper</option>
+                        <option value="standard">Standard Paper</option>
+                    </select>
+                </div>
+
+                <!-- Size Options -->
+                <div class="option-group">
+                    <h3>Size</h3>
+                    <label for="size">Select Size</label>
+                    <select id="size" name="size" required>
+                        <option value="">Choose Size</option>
+                        <option value="a4">A4 (8.27" x 11.69")</option>
+                        <option value="a3">A3 (11.69" x 16.54")</option>
+                    </select>
+                </div>
+
+                <!-- Border Options -->
+                <div class="option-group">
+                    <h3>Border Style</h3>
+                    <label for="border">Select Border</label>
+                    <select id="border" name="border" required>
+                        <option value="">Choose Border</option>
+                        <option value="gold">Gold Border</option>
+                        <option value="silver">Silver Border</option>
+                        <option value="standard">Standard Border</option>
+                    </select>
+                </div>
+
+                <!-- Font Options -->
+                <div class="option-group">
+                    <h3>Font Style</h3>
+                    <label for="font">Select Font</label>
+                    <select id="font" name="font" required>
+                        <option value="">Choose Font</option>
+                        <option value="serif">Serif</option>
+                        <option value="sans-serif">Sans Serif</option>
+                        <option value="script">Script</option>
+                    </select>
+                </div>
+
+                <!-- Text Color Options -->
+                <div class="option-group">
+                    <h3>Text Color</h3>
+                    <label for="textColor">Select Color</label>
+                    <select id="textColor" name="textColor" required>
+                        <option value="">Choose Color</option>
+                        <option value="#000000">Black</option>
+                        <option value="#1a73e8">Blue</option>
+                        <option value="#34a853">Green</option>
+                        <option value="#ea4335">Red</option>
+                    </select>
+                </div>
+
+                <!-- Seal Options -->
+                <div class="option-group">
+                    <h3>Seal Type</h3>
+                    <label for="seal">Select Seal</label>
+                    <select id="seal" name="seal" required>
+                        <option value="">Choose Seal</option>
+                        <option value="gold">Gold Seal</option>
+                        <option value="silver">Silver Seal</option>
+                        <option value="standard">Standard Seal</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="preview-section">
+                <h2>Preview</h2>
+                <div class="preview-container">
+                    <div class="preview-image">
+                        <!-- Preview content will be dynamically updated -->
+                        <h2 style="text-align: center; margin-bottom: 2rem;">Sample Diploma</h2>
+                        <p style="text-align: center; margin-bottom: 1rem;">This is a sample text that will be replaced with your actual diploma content.</p>
+                        <p style="text-align: center; margin-bottom: 1rem;">The preview will update as you make selections.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quantity Section -->
+            <div class="quantity-section">
+                <h3>Quantity</h3>
+                <div class="quantity-control">
+                    <button type="button" id="decreaseQuantity">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+                    <button type="button" id="increaseQuantity">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Price Display -->
+            <div class="price-display">
+                Total Price: ₱0.00
+            </div>
+
+            <!-- Submit Section -->
+            <div class="submit-section">
+                <button type="submit">
+                    <i class="fas fa-shopping-cart"></i>
+                    Add to Cart
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="customize-base.js"></script>
+    <script src="customize-diploma.js"></script>
+</body>
+</html> 

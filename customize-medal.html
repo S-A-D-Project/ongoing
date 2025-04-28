@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customize Medal</title>
+  <link rel="stylesheet" href="customize-medal.css">
+</head>
+<body>
+  <main class="customization-container">
+    <h1>Customize Your Medal</h1>
+    
+    <div class="preview-container">
+      <h2>Preview</h2>
+      <div class="medal-preview">
+        <img src="/images/medals/metal-round.png" alt="Medal Preview" class="medal-image">
+        <div class="ribbon-preview"></div>
+        <div class="engraving-preview">
+          <span class="engraving-text">Your text here</span>
+        </div>
+      </div>
+    </div>
+
+    <form>
+      <div class="material-selection">
+        <label>Material:</label>
+        <div class="material-options">
+          <div class="material-option selected" data-material="metal">
+            <h3>Metal</h3>
+            <p>Premium quality</p>
+          </div>
+          <div class="material-option" data-material="plastic">
+            <h3>Plastic</h3>
+            <p>Budget friendly</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="shape-selection">
+        <label>Shape:</label>
+        <div class="shape-options">
+          <div class="shape-option selected" data-shape="round"></div>
+          <div class="shape-option star" data-shape="star"></div>
+        </div>
+      </div>
+
+      <div class="ribbon-selection">
+        <label>Ribbon Color:</label>
+        <div class="color-picker">
+          <div class="color-option selected" data-color="blue" style="background-color: #1e88e5;"></div>
+          <div class="color-option" data-color="red" style="background-color: #e53935;"></div>
+          <div class="color-option" data-color="yellow" style="background-color: #fdd835;"></div>
+          <div class="color-option" data-color="green" style="background-color: #43a047;"></div>
+          <div class="color-option" data-color="purple" style="background-color: #8e24aa;"></div>
+        </div>
+      </div>
+
+      <div class="engraving-selection">
+        <label>Engraving Text:</label>
+        <input type="text" name="engraving" maxlength="50" placeholder="Enter text to engrave">
+      </div>
+
+      <div class="quantity-selection">
+        <label>Quantity:</label>
+        <div class="quantity-control">
+          <button type="button" class="decrease">-</button>
+          <input type="number" name="quantity" min="1" value="1" required>
+          <button type="button" class="increase">+</button>
+        </div>
+      </div>
+
+      <div class="special-instructions">
+        <label>Special Instructions:</label>
+        <textarea name="instructions" placeholder="Any special requirements or notes"></textarea>
+      </div>
+
+      <div class="price-display">
+        Total Price: ₱0.00
+      </div>
+
+      <button type="submit">Place Order</button>
+    </form>
+  </main>
+
+  <script src="customize-base.js"></script>
+  <script src="customize-medal.js"></script>
+</body>
+</html> 

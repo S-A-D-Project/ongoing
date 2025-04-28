@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Button Pin</title>
+    <link rel="stylesheet" href="customize-base.css">
+    <link rel="stylesheet" href="customize-buttonpin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="buttonpin-customization">
+        <h1>Customize Your Button Pin</h1>
+        
+        <form id="buttonpinForm">
+            <div class="buttonpin-options">
+                <!-- Size Options -->
+                <div class="option-group">
+                    <h3>Size</h3>
+                    <label for="size">Select Size</label>
+                    <select id="size" name="size" required>
+                        <option value="">Choose Size</option>
+                        <option value="large">Large (2.5")</option>
+                        <option value="medium">Medium (2")</option>
+                        <option value="small">Small (1.5")</option>
+                    </select>
+                </div>
+
+                <!-- Material Options -->
+                <div class="option-group">
+                    <h3>Material</h3>
+                    <label for="material">Select Material</label>
+                    <select id="material" name="material" required>
+                        <option value="">Choose Material</option>
+                        <option value="metal">Metal</option>
+                        <option value="plastic">Plastic</option>
+                    </select>
+                </div>
+
+                <!-- Backing Options -->
+                <div class="option-group">
+                    <h3>Backing Type</h3>
+                    <label for="backing">Select Backing</label>
+                    <select id="backing" name="backing" required>
+                        <option value="">Choose Backing</option>
+                        <option value="safety">Safety Pin</option>
+                        <option value="magnetic">Magnetic</option>
+                        <option value="standard">Standard Pin</option>
+                    </select>
+                </div>
+
+                <!-- Pin Type Options -->
+                <div class="option-group">
+                    <h3>Pin Type</h3>
+                    <label for="pinType">Select Pin Type</label>
+                    <select id="pinType" name="pinType" required>
+                        <option value="">Choose Pin Type</option>
+                        <option value="custom">Custom Design</option>
+                        <option value="standard">Standard Design</option>
+                    </select>
+                </div>
+
+                <!-- Color Options -->
+                <div class="option-group">
+                    <h3>Color</h3>
+                    <label for="colorPicker">Select Color</label>
+                    <div class="color-picker-group">
+                        <input type="color" id="colorPicker" name="color" value="#000000">
+                        <span>Choose your preferred color</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="preview-section">
+                <h2>Preview</h2>
+                <div class="preview-container">
+                    <div class="preview-image">
+                        <!-- Preview content will be dynamically updated -->
+                        <span>Sample</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quantity Section -->
+            <div class="quantity-section">
+                <h3>Quantity</h3>
+                <div class="quantity-control">
+                    <button type="button" id="decreaseQuantity">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+                    <button type="button" id="increaseQuantity">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Price Display -->
+            <div class="price-display">
+                Total Price: ₱0.00
+            </div>
+
+            <!-- Submit Section -->
+            <div class="submit-section">
+                <button type="submit">
+                    <i class="fas fa-shopping-cart"></i>
+                    Add to Cart
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="customize-base.js"></script>
+    <script src="customize-buttonpin.js"></script>
+</body>
+</html> 

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customize Mug</title>
+  <link rel="stylesheet" href="customize-mug.css">
+</head>
+<body>
+  <main class="customization-container">
+    <h1>Customize Your Mug</h1>
+    
+    <div class="preview-container">
+      <h2>Preview</h2>
+      <div class="mug-preview">
+        <img src="/images/mugs/classic-white.png" alt="Mug Preview" class="mug-image">
+        <div class="print-area">
+          <span class="print-text">Your text here</span>
+          <img src="" alt="Upload Preview" class="upload-preview">
+        </div>
+      </div>
+    </div>
+
+    <form>
+      <div class="mug-type-selection">
+        <label>Mug Type:</label>
+        <div class="mug-type-options">
+          <div class="mug-type-option selected" data-type="classic">
+            <img src="/images/mugs/classic.png" alt="Classic Mug">
+            <h3>Classic</h3>
+            <p>Traditional style</p>
+          </div>
+          <div class="mug-type-option" data-type="travel">
+            <img src="/images/mugs/travel.png" alt="Travel Mug">
+            <h3>Travel</h3>
+            <p>With lid</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="handle-color-selection">
+        <label>Handle Color:</label>
+        <div class="handle-color-options">
+          <div class="handle-color-option selected" data-color="white" style="background-color: #ffffff;"></div>
+          <div class="handle-color-option" data-color="black" style="background-color: #000000;"></div>
+          <div class="handle-color-option" data-color="red" style="background-color: #e53935;"></div>
+          <div class="handle-color-option" data-color="blue" style="background-color: #1e88e5;"></div>
+        </div>
+      </div>
+
+      <div class="capacity-selection">
+        <label>Capacity:</label>
+        <div class="capacity-options">
+          <div class="capacity-option selected" data-capacity="12oz">12 oz</div>
+          <div class="capacity-option" data-capacity="16oz">16 oz</div>
+          <div class="capacity-option" data-capacity="20oz">20 oz</div>
+        </div>
+      </div>
+
+      <div class="print-options">
+        <label>Print Type:</label>
+        <div class="print-type">
+          <label>
+            <input type="radio" name="printType" value="text" checked>
+            Text
+          </label>
+          <label>
+            <input type="radio" name="printType" value="image">
+            Image
+          </label>
+        </div>
+
+        <div class="text-options">
+          <label>Print Text:</label>
+          <input type="text" name="printText" maxlength="50" placeholder="Enter text to print">
+        </div>
+
+        <div class="image-options" style="display: none;">
+          <label>Upload Image:</label>
+          <input type="file" name="printImage" accept="image/*">
+        </div>
+
+        <div class="print-style-selection">
+          <label>Print Style:</label>
+          <div class="print-style-options">
+            <div class="print-style-option selected" data-style="full">Full Print</div>
+            <div class="print-style-option" data-style="partial">Partial Print</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quantity-selection">
+        <label>Quantity:</label>
+        <div class="quantity-control">
+          <button type="button" class="decrease">-</button>
+          <input type="number" name="quantity" min="1" value="1" required>
+          <button type="button" class="increase">+</button>
+        </div>
+      </div>
+
+      <div class="special-instructions">
+        <label>Special Instructions:</label>
+        <textarea name="instructions" placeholder="Any special requirements or notes"></textarea>
+      </div>
+
+      <div class="price-display">
+        Total Price: ₱0.00
+      </div>
+
+      <button type="submit">Place Order</button>
+    </form>
+  </main>
+
+  <script src="customize-base.js"></script>
+  <script src="customize-mug.js"></script>
+</body>
+</html> 

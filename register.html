@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - OPSMS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="root">
+        <!-- Navbar -->
+        <header class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">OPSMS</a>
+                </div>
+                <nav class="desktop-nav">
+                    <a href="services.html">Services</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="track-order.html">Track Order</a>
+                </nav>
+                <div class="nav-actions">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <a href="login.html" class="login-btn">Login</a>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Mobile Menu -->
+        <nav class="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="logo">
+                    <a href="index.html">OPSMS</a>
+                </div>
+                <button class="mobile-menu-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mobile-menu-content">
+                <a href="services.html">Services</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                <a href="track-order.html">Track Order</a>
+                <div class="mobile-menu-actions">
+                    <a href="login.html" class="btn btn-primary">Login</a>
+                    <a href="register.html" class="btn btn-outline">Register</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Registration Section -->
+        <section class="register-section">
+            <div class="container">
+                <div class="register-grid">
+                    <div class="register-content">
+                        <h1>Create Your Account</h1>
+                        <p>Join OPSMS to access premium services and exclusive offers.</p>
+                        <div class="register-benefits">
+                            <div class="benefit-item">
+                                <i class="fas fa-truck-fast"></i>
+                                <h3>Fast Delivery</h3>
+                                <p>Quick turnaround times for all your orders</p>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-percent"></i>
+                                <h3>Exclusive Discounts</h3>
+                                <p>Special offers for registered members</p>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-history"></i>
+                                <h3>Order History</h3>
+                                <p>Track and manage your past orders</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="register-form-container">
+                        <form id="registerForm" class="register-form">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <div class="input-group">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="fullName" name="fullName" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <div class="input-group">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <div class="input-group">
+                                    <i class="fas fa-phone"></i>
+                                    <input type="tel" id="phone" name="phone" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <div class="input-group">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="password" name="password" required>
+                                    <button type="button" class="toggle-password">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <div class="input-group">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                                    <button type="button" class="toggle-password">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Delivery Address</label>
+                                <div class="input-group">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <textarea id="address" name="address" rows="3" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <label for="terms">I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a></label>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                                <p class="form-footer">Already have an account? <a href="login.html">Login here</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-section">
+                        <h3>OPSMS</h3>
+                        <p>Premium services at affordable prices. Fast delivery across the Philippines.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="track-order.html">Track Order</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Follow Us</h3>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 OPSMS. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="register.js"></script>
+</body>
+</html> 

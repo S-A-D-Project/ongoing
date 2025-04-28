@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customize Sintra Board</title>
+  <link rel="stylesheet" href="customize-sintra.css">
+</head>
+<body>
+  <main class="customization-container">
+    <h1>Customize Your Sintra Board</h1>
+    <form>
+      <label>Thickness:
+        <select required>
+          <option>3mm</option>
+          <option>5mm</option>
+        </select>
+      </label>
+      <label>Size:
+        <select required>
+          <option>A4</option>
+          <option>A3</option>
+          <option>Custom</option>
+        </select>
+      </label>
+      <label>Mounting Holes:
+        <select required>
+          <option>None</option>
+          <option>With Holes</option>
+        </select>
+      </label>
+      <label>Quantity: <input type="number" min="1" value="1" required></label>
+      <label>Special Instructions: <textarea></textarea></label>
+      <button type="submit">Place Order</button>
+    </form>
+  </main>
+</body>
+</html> 

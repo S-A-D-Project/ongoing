@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Order - OPSMS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="order-customization.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="customization-modal" id="customizationModal">
+        <div class="customization-content">
+            <div class="customization-header">
+                <h2>Customize Your Order</h2>
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="customization-body">
+                <form id="customizationForm">
+                    <!-- Basic Details -->
+                    <div class="form-section">
+                        <h3>Basic Details</h3>
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="size">Size</label>
+                            <select id="size" name="size" required>
+                                <option value="A4">A4 (210 x 297 mm)</option>
+                                <option value="A3">A3 (297 x 420 mm)</option>
+                                <option value="A2">A2 (420 x 594 mm)</option>
+                                <option value="A1">A1 (594 x 841 mm)</option>
+                                <option value="custom">Custom Size</option>
+                            </select>
+                        </div>
+                        <div class="form-group custom-size" style="display: none;">
+                            <label for="customWidth">Width (mm)</label>
+                            <input type="number" id="customWidth" name="customWidth" min="1">
+                            <label for="customHeight">Height (mm)</label>
+                            <input type="number" id="customHeight" name="customHeight" min="1">
+                        </div>
+                    </div>
+
+                    <!-- Paper Options -->
+                    <div class="form-section">
+                        <h3>Paper Options</h3>
+                        <div class="form-group">
+                            <label for="paperType">Paper Type</label>
+                            <select id="paperType" name="paperType" required>
+                                <option value="bond">Bond Paper</option>
+                                <option value="glossy">Glossy Paper</option>
+                                <option value="matte">Matte Paper</option>
+                                <option value="photo">Photo Paper</option>
+                                <option value="cardstock">Cardstock</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="paperWeight">Paper Weight (gsm)</label>
+                            <select id="paperWeight" name="paperWeight" required>
+                                <option value="70">70 gsm</option>
+                                <option value="80">80 gsm</option>
+                                <option value="100">100 gsm</option>
+                                <option value="120">120 gsm</option>
+                                <option value="150">150 gsm</option>
+                                <option value="200">200 gsm</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Printing Options -->
+                    <div class="form-section">
+                        <h3>Printing Options</h3>
+                        <div class="form-group">
+                            <label for="colorMode">Color Mode</label>
+                            <select id="colorMode" name="colorMode" required>
+                                <option value="color">Full Color</option>
+                                <option value="bw">Black & White</option>
+                                <option value="grayscale">Grayscale</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="printSides">Print Sides</label>
+                            <select id="printSides" name="printSides" required>
+                                <option value="single">Single Side</option>
+                                <option value="double">Double Side</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="finishing">Finishing Options</label>
+                            <select id="finishing" name="finishing" multiple>
+                                <option value="lamination">Lamination</option>
+                                <option value="binding">Binding</option>
+                                <option value="cutting">Cutting</option>
+                                <option value="folding">Folding</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Special Instructions -->
+                    <div class="form-section">
+                        <h3>Special Instructions</h3>
+                        <div class="form-group">
+                            <label for="instructions">Additional Notes</label>
+                            <textarea id="instructions" name="instructions" rows="4" placeholder="Any special requirements or instructions..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- File Upload -->
+                    <div class="form-section">
+                        <h3>Upload Files</h3>
+                        <div class="form-group">
+                            <label for="fileUpload">Upload Design Files</label>
+                            <input type="file" id="fileUpload" name="fileUpload" multiple accept=".pdf,.jpg,.jpeg,.png,.ai,.psd">
+                            <div class="file-preview" id="filePreview"></div>
+                        </div>
+                    </div>
+
+                    <!-- Price Summary -->
+                    <div class="form-section price-summary">
+                        <h3>Price Summary</h3>
+                        <div class="price-details">
+                            <div class="price-item">
+                                <span>Base Price</span>
+                                <span class="base-price">₱0.00</span>
+                            </div>
+                            <div class="price-item">
+                                <span>Paper Upgrade</span>
+                                <span class="paper-upgrade">₱0.00</span>
+                            </div>
+                            <div class="price-item">
+                                <span>Finishing Options</span>
+                                <span class="finishing-cost">₱0.00</span>
+                            </div>
+                            <div class="price-item total">
+                                <span>Total</span>
+                                <span class="total-price">₱0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="customization-footer">
+                <button class="btn btn-secondary" id="cancelCustomization">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <script src="order-customization.js"></script>
+</body>
+</html> 

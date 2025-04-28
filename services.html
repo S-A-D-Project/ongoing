@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPSMS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="services.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="root">
+        <!-- Navbar -->
+        <header class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">OPSMS</a>
+                </div>
+                <nav class="desktop-nav">
+                    <a href="services.html" class="active">Services</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="track-order.html">Track Order</a>
+                </nav>
+                <div class="nav-actions">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <a href="login.html" class="login-btn">Login</a>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Mobile Menu -->
+        <nav class="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="logo">
+                    <a href="index.html">OPSMS</a>
+                </div>
+                <button class="mobile-menu-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mobile-menu-content">
+                <a href="services.html" class="active">Services</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                <a href="track-order.html">Track Order</a>
+                <div class="mobile-menu-actions">
+                    <a href="login.html" class="btn btn-primary">Login</a>
+                    <a href="register.html" class="btn btn-outline">Register</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Services Section -->
+        <section class="services-page">
+            <div class="container">
+                <h1>Our Services</h1>
+                <p class="services-intro">Discover our comprehensive range of services designed to meet all your business and personal needs.</p>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <h3>Tarpaulin / Banner</h3>
+                        <p>High-quality tarpaulins and banners for events, promotions, and advertising.</p>
+                        <div class="service-price">Starting at ₱299</div>
+                        <div class="service-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('tarpaulin')">View Details</button>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-th"></i>
+                        <h3>Sintra Board</h3>
+                        <p>Durable sintra board printing for signs, displays, and exhibitions.</p>
+                        <div class="service-price">Starting at ₱399</div>
+                        <div class="service-buttons">
+                            <a href="product.html" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-tshirt"></i>
+                        <h3>T-Shirt Printing</h3>
+                        <p>Custom t-shirt printing with various techniques and materials.</p>
+                        <div class="service-price">Starting at ₱199</div>
+                        <div class="service-buttons">
+                            <a href="product.html" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-tag"></i>
+                        <h3>Product Label</h3>
+                        <p>Custom product labels and stickers for your business needs.</p>
+                        <div class="service-price">Starting at ₱149</div>
+                        <div class="service-buttons">
+                            <a href="product.html" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-sticky-note"></i>
+                        <h3>Sticker</h3>
+                        <p>Custom stickers in various sizes and materials.</p>
+                        <div class="service-price">Starting at ₱99</div>
+                        <div class="service-buttons">
+                            <a href="product.html" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-award"></i>
+                        <h3>Plaque</h3>
+                        <p>Custom plaques for awards, recognition, and commemorative purposes.</p>
+                        <div class="service-price">Starting at ₱499</div>
+                        <div class="service-buttons">
+                            <a href="product.html" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-mug-hot"></i>
+                        <h3>Mugs</h3>
+                        <p>Custom printed mugs for promotional and personal use.</p>
+                        <div class="service-price">Starting at ₱199</div>
+                        <div class="service-buttons">
+                            <a href="product.html" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-key"></i>
+                        <h3>Keychain</h3>
+                        <p>Custom keychains for promotional and souvenir purposes.</p>
+                        <div class="service-price">Starting at ₱49</div>
+                        <div class="service-buttons">
+                            <a href="product.html" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-shopping-bag"></i>
+                        <h3>Eco Bag</h3>
+                        <p>Custom printed eco-friendly bags for promotional use.</p>
+                        <div class="service-price">Starting at ₱149</div>
+                        <div class="service-buttons">
+                            <a href="product.html" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-thumbtack"></i>
+                        <h3>Button Pin</h3>
+                        <p>Custom button pins for promotional and collectible purposes.</p>
+                        <div class="service-price">Starting at ₱29</div>
+                        <div class="service-buttons">
+                            <a href="product.html" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-id-card"></i>
+                        <h3>ID Lace / Lanyard</h3>
+                        <p>Custom printed ID laces and lanyards for identification purposes.</p>
+                        <div class="service-price">Starting at ₱79</div>
+                        <div class="service-buttons">
+                            <a href="product.html" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-certificate"></i>
+                        <h3>Diploma Certificate Folder</h3>
+                        <p>Custom diploma and certificate folders for academic institutions.</p>
+                        <div class="service-price">Starting at ₱199</div>
+                        <div class="service-buttons">
+                            <a href="product.html" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-stamp"></i>
+                        <h3>Dryseal</h3>
+                        <p>Custom dryseal stamps for official documents and certificates.</p>
+                        <div class="service-price">Starting at ₱399</div>
+                        <div class="service-buttons">
+                            <a href="product.html" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-gift"></i>
+                        <h3>Corporate Giveaways</h3>
+                        <p>Custom corporate giveaways for events and promotions.</p>
+                        <div class="service-price">Starting at ₱99</div>
+                        <div class="service-buttons">
+                            <a href="product.html" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-medal"></i>
+                        <h3>Medal</h3>
+                        <p>Custom medals for sports events and recognition ceremonies.</p>
+                        <div class="service-price">Starting at ₱299</div>
+                        <div class="service-buttons">
+                            <a href="product.html" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-section">
+                        <h3>OPSMS</h3>
+                        <p>Premium services at affordable prices. Fast delivery across the Philippines.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="track-order.html">Track Order</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Follow Us</h3>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 OPSMS. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+    <script src="services.js"></script>
+</body>
+</html> 

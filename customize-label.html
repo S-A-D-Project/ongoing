@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customize Product Label</title>
+  <link rel="stylesheet" href="customize-label.css">
+</head>
+<body>
+  <main class="customization-container">
+    <h1>Customize Your Product Label</h1>
+    <form>
+      <label>Shape:
+        <select required>
+          <option>Rectangle</option>
+          <option>Circle</option>
+        </select>
+      </label>
+      <label>Material:
+        <select required>
+          <option>Paper</option>
+          <option>Vinyl</option>
+        </select>
+      </label>
+      <label>Adhesive:
+        <select required>
+          <option>Permanant</option>
+          <option>Removable</option>
+        </select>
+      </label>
+      <label>Quantity: <input type="number" min="1" value="1" required></label>
+      <label>Special Instructions: <textarea></textarea></label>
+      <button type="submit">Place Order</button>
+    </form>
+  </main>
+</body>
+</html> 

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPSMS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="track-order.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="root">
+        <!-- Navbar -->
+        <header class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">OPSMS</a>
+                </div>
+                <nav class="desktop-nav">
+                    <a href="services.html">Services</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="track-order.html" class="active">Track Order</a>
+                </nav>
+                <div class="nav-actions">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <a href="login.html" class="login-btn">Login</a>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Mobile Menu -->
+        <nav class="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="logo">
+                    <a href="index.html">OPSMS</a>
+                </div>
+                <button class="mobile-menu-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mobile-menu-content">
+                <a href="services.html">Services</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                <a href="track-order.html" class="active">Track Order</a>
+                <div class="mobile-menu-actions">
+                    <a href="login.html" class="btn btn-primary">Login</a>
+                    <a href="register.html" class="btn btn-outline">Register</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Track Order Section -->
+        <section class="track-order-page">
+            <div class="container">
+                <h1>Track Your Order</h1>
+                <p class="track-intro">Enter your order number and email address to track your order status.</p>
+                
+                <div class="track-order-form">
+                    <form id="trackOrderForm">
+                        <div class="form-group">
+                            <label for="orderNumber">Order Number</label>
+                            <input type="text" id="orderNumber" name="orderNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Track Order</button>
+                    </form>
+                </div>
+
+                <div class="order-status" id="orderStatus" style="display: none;">
+                    <div class="status-header">
+                        <h2>Order Status</h2>
+                        <span class="status-badge" id="statusBadge">Processing</span>
+                    </div>
+                    <div class="status-details">
+                        <div class="detail-item">
+                            <span class="label">Order Number:</span>
+                            <span class="value" id="orderNumberDisplay">123456</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Order Date:</span>
+                            <span class="value" id="orderDate">January 1, 2024</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Total Amount:</span>
+                            <span class="value" id="orderTotal">₱1,000.00</span>
+                        </div>
+                    </div>
+                    <div class="status-timeline">
+                        <div class="timeline-item active">
+                            <div class="timeline-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Order Placed</h3>
+                                <p>Your order has been received</p>
+                                <span class="timeline-date">January 1, 2024</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Processing</h3>
+                                <p>Your order is being processed</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Shipped</h3>
+                                <p>Your order is on its way</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Delivered</h3>
+                                <p>Your order has been delivered</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-section">
+                        <h3>OPSMS</h3>
+                        <p>Premium services at affordable prices. Fast delivery across the Philippines.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="track-order.html">Track Order</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Follow Us</h3>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 OPSMS. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+    <script src="track-order.js"></script>
+</body>
+</html> 

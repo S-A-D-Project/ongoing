@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customize Sticker</title>
+  <link rel="stylesheet" href="customize-sticker.css">
+</head>
+<body>
+  <main class="customization-container">
+    <h1>Customize Your Sticker</h1>
+    <form>
+      <label>Shape:
+        <select required>
+          <option>Circle</option>
+          <option>Square</option>
+          <option>Custom</option>
+        </select>
+      </label>
+      <label>Material:
+        <select required>
+          <option>Paper</option>
+          <option>Vinyl</option>
+        </select>
+      </label>
+      <label>Finish:
+        <select required>
+          <option>Matte</option>
+          <option>Glossy</option>
+        </select>
+      </label>
+      <label>Quantity: <input type="number" min="1" value="1" required></label>
+      <label>Special Instructions: <textarea></textarea></label>
+      <button type="submit">Place Order</button>
+    </form>
+  </main>
+</body>
+</html> 

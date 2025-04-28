@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customize T-Shirt</title>
+  <link rel="stylesheet" href="customize-tshirt.css">
+</head>
+<body>
+  <main class="customization-container">
+    <h1>Customize Your T-Shirt</h1>
+    
+    <div class="preview-container">
+      <h2>Preview</h2>
+      <div class="tshirt-preview">
+        <img src="/images/tshirts/white.png" alt="T-Shirt Preview" class="tshirt-image">
+        <div class="print-preview">
+          <span class="print-text">Your text here</span>
+          <img src="" alt="Upload Preview" class="upload-preview">
+        </div>
+      </div>
+    </div>
+
+    <form>
+      <div class="size-selection">
+        <label>Size:</label>
+        <div class="size-options">
+          <div class="size-option" data-size="S">S</div>
+          <div class="size-option selected" data-size="M">M</div>
+          <div class="size-option" data-size="L">L</div>
+          <div class="size-option" data-size="XL">XL</div>
+          <div class="size-option" data-size="XXL">XXL</div>
+        </div>
+      </div>
+
+      <div class="color-selection">
+        <label>Color:</label>
+        <div class="color-picker">
+          <div class="color-option selected" data-color="white" style="background-color: #ffffff;"></div>
+          <div class="color-option" data-color="black" style="background-color: #000000;"></div>
+          <div class="color-option" data-color="red" style="background-color: #e53935;"></div>
+          <div class="color-option" data-color="blue" style="background-color: #1e88e5;"></div>
+          <div class="color-option" data-color="green" style="background-color: #43a047;"></div>
+        </div>
+      </div>
+
+      <div class="print-options">
+        <label>Print Type:</label>
+        <div class="print-type">
+          <label>
+            <input type="radio" name="printType" value="text" checked>
+            Text
+          </label>
+          <label>
+            <input type="radio" name="printType" value="image">
+            Image
+          </label>
+        </div>
+
+        <div class="text-options">
+          <label>Print Text:</label>
+          <input type="text" name="printText" maxlength="50" placeholder="Enter text to print">
+          
+          <label>Font:</label>
+          <div class="font-options">
+            <div class="font-option selected" data-font="Arial">Arial</div>
+            <div class="font-option" data-font="Times New Roman">Times New Roman</div>
+            <div class="font-option" data-font="Courier New">Courier New</div>
+            <div class="font-option" data-font="Comic Sans MS">Comic Sans</div>
+          </div>
+        </div>
+
+        <div class="image-options" style="display: none;">
+          <label>Upload Image:</label>
+          <input type="file" name="printImage" accept="image/*">
+        </div>
+      </div>
+
+      <div class="position-selection">
+        <label>Print Position:</label>
+        <div class="print-position">
+          <div class="position-option selected" data-position="center">Center</div>
+          <div class="position-option" data-position="left">Left</div>
+          <div class="position-option" data-position="right">Right</div>
+        </div>
+      </div>
+
+      <div class="quantity-selection">
+        <label>Quantity:</label>
+        <div class="quantity-control">
+          <button type="button" class="decrease">-</button>
+          <input type="number" name="quantity" min="1" value="1" required>
+          <button type="button" class="increase">+</button>
+        </div>
+      </div>
+
+      <div class="special-instructions">
+        <label>Special Instructions:</label>
+        <textarea name="instructions" placeholder="Any special requirements or notes"></textarea>
+      </div>
+
+      <div class="price-display">
+        Total Price: ₱0.00
+      </div>
+
+      <button type="submit">Place Order</button>
+    </form>
+  </main>
+
+  <script src="customize-base.js"></script>
+  <script src="customize-tshirt.js"></script>
+</body>
+</html> 

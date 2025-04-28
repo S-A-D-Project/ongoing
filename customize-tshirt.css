@@ -1,0 +1,130 @@
+@import url('customize-base.css');
+
+/* T-shirt specific styles */
+.tshirt-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tshirt-image {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.tshirt-image:hover {
+  transform: scale(1.05);
+}
+
+.size-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.size-option {
+  padding: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.size-option:hover {
+  border-color: #4a90e2;
+  background: #f5f5f5;
+}
+
+.size-option.selected {
+  border-color: #4a90e2;
+  background: #e8f0fe;
+}
+
+.print-preview {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 4px;
+  text-align: center;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.print-text {
+  font-family: 'Arial', sans-serif;
+  font-size: 1.5rem;
+  color: #333;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+.print-position {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.position-option {
+  padding: 0.5rem 1rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.position-option:hover {
+  border-color: #4a90e2;
+  background: #f5f5f5;
+}
+
+.position-option.selected {
+  border-color: #4a90e2;
+  background: #e8f0fe;
+}
+
+.font-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.font-option {
+  padding: 0.5rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.font-option:hover {
+  border-color: #4a90e2;
+  background: #f5f5f5;
+}
+
+.font-option.selected {
+  border-color: #4a90e2;
+  background: #e8f0fe;
+}
+
+.upload-preview {
+  margin-top: 1rem;
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 4px;
+  display: none;
+}
+
+.upload-preview.visible {
+  display: block;
+} 

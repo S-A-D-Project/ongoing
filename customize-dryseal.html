@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Dry Seal</title>
+    <link rel="stylesheet" href="customize-base.css">
+    <link rel="stylesheet" href="customize-dryseal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dryseal-customization">
+        <h1>Customize Your Dry Seal</h1>
+        
+        <form id="drysealForm">
+            <div class="dryseal-options">
+                <!-- Size Options -->
+                <div class="option-group">
+                    <h3>Size</h3>
+                    <label for="size">Select Size</label>
+                    <select id="size" name="size" required>
+                        <option value="">Choose Size</option>
+                        <option value="large">Large (2.5")</option>
+                        <option value="medium">Medium (2")</option>
+                        <option value="small">Small (1.5")</option>
+                    </select>
+                </div>
+
+                <!-- Material Options -->
+                <div class="option-group">
+                    <h3>Material</h3>
+                    <label for="material">Select Material</label>
+                    <select id="material" name="material" required>
+                        <option value="">Choose Material</option>
+                        <option value="brass">Brass</option>
+                        <option value="steel">Steel</option>
+                        <option value="aluminum">Aluminum</option>
+                    </select>
+                </div>
+
+                <!-- Handle Options -->
+                <div class="option-group">
+                    <h3>Handle Type</h3>
+                    <label for="handle">Select Handle</label>
+                    <select id="handle" name="handle" required>
+                        <option value="">Choose Handle</option>
+                        <option value="wooden">Wooden Handle</option>
+                        <option value="plastic">Plastic Handle</option>
+                        <option value="metal">Metal Handle</option>
+                    </select>
+                </div>
+
+                <!-- Text Options -->
+                <div class="option-group">
+                    <h3>Seal Text</h3>
+                    <label for="text">Enter Text</label>
+                    <input type="text" id="text" name="text" placeholder="Enter text for your seal" required>
+                </div>
+
+                <!-- Font Options -->
+                <div class="option-group">
+                    <h3>Font Style</h3>
+                    <label for="font">Select Font</label>
+                    <select id="font" name="font" required>
+                        <option value="">Choose Font</option>
+                        <option value="serif">Serif</option>
+                        <option value="sans-serif">Sans Serif</option>
+                        <option value="script">Script</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="preview-section">
+                <h2>Preview</h2>
+                <div class="preview-container">
+                    <div class="preview-image">
+                        <!-- Preview content will be dynamically updated -->
+                        <span>Sample Text</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quantity Section -->
+            <div class="quantity-section">
+                <h3>Quantity</h3>
+                <div class="quantity-control">
+                    <button type="button" id="decreaseQuantity">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+                    <button type="button" id="increaseQuantity">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Price Display -->
+            <div class="price-display">
+                Total Price: ₱0.00
+            </div>
+
+            <!-- Submit Section -->
+            <div class="submit-section">
+                <button type="submit">
+                    <i class="fas fa-shopping-cart"></i>
+                    Add to Cart
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="customize-base.js"></script>
+    <script src="customize-dryseal.js"></script>
+</body>
+</html> 

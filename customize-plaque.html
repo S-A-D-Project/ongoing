@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customize Plaque</title>
+  <link rel="stylesheet" href="customize-plaque.css">
+</head>
+<body>
+  <main class="customization-container">
+    <h1>Customize Your Plaque</h1>
+    <form>
+      <label>Material:
+        <select required>
+          <option>Wood</option>
+          <option>Acrylic</option>
+        </select>
+      </label>
+      <label>Engraving:
+        <select required>
+          <option>Laser</option>
+          <option>Printed</option>
+        </select>
+      </label>
+      <label>Size:
+        <select required>
+          <option>Small</option>
+          <option>Medium</option>
+          <option>Large</option>
+        </select>
+      </label>
+      <label>Quantity: <input type="number" min="1" value="1" required></label>
+      <label>Special Instructions: <textarea></textarea></label>
+      <button type="submit">Place Order</button>
+    </form>
+  </main>
+</body>
+</html> 

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Your Keychain</title>
+    <link rel="stylesheet" href="customize-keychain.css">
+</head>
+<body>
+    <div class="customization-container">
+        <div class="preview-section">
+            <div class="keychain-preview">
+                <img src="/images/keychains/standard-circle-plastic.png" alt="Keychain Preview" class="keychain-image">
+                <div class="print-area">
+                    <div class="print-text">Your text here</div>
+                    <img src="" alt="Upload Preview" class="upload-preview">
+                </div>
+            </div>
+        </div>
+
+        <div class="options-section">
+            <form id="keychainCustomizationForm">
+                <div class="option-group">
+                    <h3>Keychain Type</h3>
+                    <div class="keychain-type-options">
+                        <div class="keychain-type-option selected" data-type="standard">
+                            <img src="/images/keychain-types/standard.png" alt="Standard">
+                            <span>Standard</span>
+                        </div>
+                        <div class="keychain-type-option" data-type="premium">
+                            <img src="/images/keychain-types/premium.png" alt="Premium">
+                            <span>Premium</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <h3>Shape</h3>
+                    <div class="shape-options">
+                        <div class="shape-option selected" data-shape="circle">
+                            <img src="/images/shapes/circle.png" alt="Circle">
+                            <span>Circle</span>
+                        </div>
+                        <div class="shape-option" data-shape="square">
+                            <img src="/images/shapes/square.png" alt="Square">
+                            <span>Square</span>
+                        </div>
+                        <div class="shape-option" data-shape="heart">
+                            <img src="/images/shapes/heart.png" alt="Heart">
+                            <span>Heart</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <h3>Material</h3>
+                    <div class="material-options">
+                        <div class="material-option selected" data-material="plastic">
+                            <img src="/images/materials/plastic.png" alt="Plastic">
+                            <span>Plastic</span>
+                        </div>
+                        <div class="material-option" data-material="metal">
+                            <img src="/images/materials/metal.png" alt="Metal">
+                            <span>Metal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <h3>Size</h3>
+                    <div class="size-options">
+                        <div class="size-option" data-size="small">
+                            <span>Small</span>
+                        </div>
+                        <div class="size-option selected" data-size="medium">
+                            <span>Medium</span>
+                        </div>
+                        <div class="size-option" data-size="large">
+                            <span>Large</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <h3>Customization</h3>
+                    <div class="customization-options">
+                        <div class="text-option">
+                            <label for="printText">Add Text (max 20 characters)</label>
+                            <input type="text" id="printText" name="printText" maxlength="20" placeholder="Enter your text">
+                        </div>
+                        <div class="image-option">
+                            <label for="printImage">Upload Image</label>
+                            <input type="file" id="printImage" name="printImage" accept="image/*">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="price-section">
+                    <span class="price-label">Price:</span>
+                    <span class="price-amount">₹60</span>
+                </div>
+
+                <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="customization-base.js"></script>
+    <script src="customize-keychain.js"></script>
+</body>
+</html> 
