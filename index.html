@@ -1,225 +1,1185 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OPSMS</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printing Enterprises - Choose Your Provider</title>
+    <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .enterprises-container {
+            min-height: calc(100vh - 80px);
+            background-color: var(--background-light);
+            padding: 2rem;
+            margin-top: 0;
+        }
+
+        .enterprises-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .enterprises-header h1 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .enterprises-header p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .enterprises-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .enterprise-card {
+            background: var(--white);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .enterprise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .enterprise-image {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--background-light);
+            color: var(--primary-color);
+        }
+
+        .enterprise-content {
+            padding: 1.5rem;
+        }
+
+        .enterprise-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .enterprise-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--background-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+        }
+
+        .enterprise-info h3 {
+            font-size: 1.25rem;
+            color: var(--text-color);
+            margin-bottom: 0.25rem;
+        }
+
+        .enterprise-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #f59e0b;
+        }
+
+        .enterprise-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: var(--background-light);
+            border-radius: 0.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .enterprise-features {
+            margin: 1rem 0;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .feature-item i {
+            color: var(--primary-color);
+        }
+
+        .enterprise-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .enterprise-actions .btn {
+            flex: 1;
+            text-align: center;
+        }
+
+        .search-filter {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .filter-select {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            background-color: var(--white);
+            min-width: 200px;
+        }
+
+        @media (max-width: 1024px) {
+            .enterprises-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .enterprises-container {
+                padding: 1rem;
+            }
+
+            .enterprises-header h1 {
+                font-size: 2rem;
+            }
+
+            .enterprises-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-filter {
+                flex-direction: column;
+            }
+
+            .search-input,
+            .filter-select {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .enterprises-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .enterprise-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .enterprise-actions {
+                flex-direction: column;
+            }
+        }
+
+        .kebs-enterprise {
+            border: 2px solid var(--primary-color);
+            position: relative;
+        }
+
+        .kebs-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .kebs-enterprise .enterprise-actions .btn-primary {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .kebs-enterprise .enterprise-actions .btn-primary:hover {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+        }
+
+        .navbar-search {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 2rem;
+            position: relative;
+        }
+
+        .navbar-search input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            padding-right: 5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 0.75rem;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            background: var(--background-light);
+        }
+
+        .navbar-search input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            background: var(--white);
+        }
+
+        .navbar-search input::placeholder {
+            color: var(--text-light);
+        }
+
+        .navbar-search i {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            transition: color 0.3s ease;
+            pointer-events: none;
+        }
+
+        .navbar-search input:focus + i {
+            color: var(--primary-color);
+        }
+
+        .navbar-search select {
+            position: absolute;
+            right: 2.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            color: var(--text-light);
+            font-size: 0.875rem;
+            padding-right: 1rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B7280' d='M6 8.825L1.175 4 2.05 3.125 6 7.075 9.95 3.125 10.825 4z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            padding-right: 1.5rem;
+        }
+
+        .navbar-search select:hover {
+            color: var(--primary-color);
+        }
+
+        .navbar-search select:focus {
+            outline: none;
+            color: var(--primary-color);
+        }
+
+        .navbar-search select option {
+            background: var(--white);
+            color: var(--text-color);
+            padding: 0.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .navbar-search {
+                display: none;
+            }
+        }
+
+        /* Mobile Search Button */
+        .mobile-search-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-right: 1rem;
+        }
+
+        @media (max-width: 1024px) {
+            .mobile-search-btn {
+                display: block;
+            }
+        }
+
+        /* Mobile Search Overlay */
+        .mobile-search-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-search-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .mobile-search-container {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 4rem;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-search-overlay.active .mobile-search-container {
+            transform: translateY(0);
+        }
+
+        .mobile-search-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .mobile-search-close {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .messaging-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .messaging-header {
+            background: #2563eb;
+            color: white;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .messaging-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .messaging-minimize {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .messaging-body {
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .messaging-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #f8fafc;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .message.system {
+            align-self: flex-start;
+            background: white;
+            color: #1f2937;
+            border: 1px solid #e5e7eb;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: #2563eb;
+            color: white;
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .messaging-input {
+            padding: 12px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 8px;
+            background: white;
+        }
+
+        .messaging-input input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .messaging-input input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+
+        .messaging-input button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .messaging-input button:hover {
+            background: #1d4ed8;
+        }
+
+        .messaging-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s;
+            z-index: 9999;
+        }
+
+        .messaging-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        .messaging-widget.hidden {
+            transform: translateY(100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .messaging-widget.minimized .messaging-body {
+            display: none;
+        }
+
+        /* Notification System Styles */
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 350px;
+        }
+
+        .notification {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+            border-left: 4px solid #2563eb;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            border-left-color: #10b981;
+        }
+
+        .notification.warning {
+            border-left-color: #f59e0b;
+        }
+
+        .notification.error {
+            border-left-color: #ef4444;
+        }
+
+        .notification-icon {
+            font-size: 1.25rem;
+            color: #2563eb;
+        }
+
+        .notification.success .notification-icon {
+            color: #10b981;
+        }
+
+        .notification.warning .notification-icon {
+            color: #f59e0b;
+        }
+
+        .notification.error .notification-icon {
+            color: #ef4444;
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #1f2937;
+        }
+
+        .notification-message {
+            color: #4b5563;
+            font-size: 0.875rem;
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            padding: 4px;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+
+        .notification-close:hover {
+            color: #4b5563;
+        }
+
+        .notification-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: #2563eb;
+            width: 100%;
+            transform-origin: left;
+            animation: progress 5s linear forwards;
+        }
+
+        .notification.success .notification-progress {
+            background: #10b981;
+        }
+
+        .notification.warning .notification-progress {
+            background: #f59e0b;
+        }
+
+        .notification.error .notification-progress {
+            background: #ef4444;
+        }
+
+        @keyframes progress {
+            from { transform: scaleX(1); }
+            to { transform: scaleX(0); }
+        }
+    </style>
   </head>
   <body>
-    <div id="root">
-      <!-- Navbar -->
-      <header class="navbar">
-        <div class="container">
-          <div class="logo">
-            <a href="index.html">OPSMS</a>
+    <nav class="navbar">
+      <div class="container">
+        <a href="./" class="logo"><img src="images/Gemini_Generated_Image_wafkqlwafkqlwafk.PNG" alt="Printing Services Logo" style="height:40px;vertical-align:middle;"></a>
+        <div class="navbar-search">
+            <input type="text" id="enterpriseSearch" placeholder="Search enterprises...">
+            <select id="enterpriseFilter">
+                <option value="all">All Enterprises</option>
+                <option value="premium">Premium Partners</option>
+                <option value="standard">Standard Partners</option>
+                <option value="express">Express Service</option>
+            </select>
+            <i class="fas fa-search"></i>
+        </div>
+        <button class="mobile-search-btn" aria-label="Search">
+            <i class="fas fa-search"></i>
+        </button>
+        <div class="nav-links">
+          <a href="./track.html">Track Order</a>
+          <a href="./login.html" class="btn btn-outline">Login</a>
+          <a href="./register.html" class="btn btn-primary">Register</a>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Search Overlay -->
+    <div class="mobile-search-overlay" id="mobileSearchOverlay">
+        <div class="mobile-search-container">
+            <div class="mobile-search-header">
+                <h3>Search Enterprises</h3>
+                <button class="mobile-search-close" aria-label="Close search">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="navbar-search">
+                <input type="text" id="mobileEnterpriseSearch" placeholder="Search enterprises...">
+                <select id="mobileEnterpriseFilter">
+                    <option value="all">All Enterprises</option>
+                    <option value="premium">Premium Partners</option>
+                    <option value="standard">Standard Partners</option>
+                    <option value="express">Express Service</option>
+                </select>
+                <i class="fas fa-search"></i>
           </div>
-          <nav class="desktop-nav">
-            <a href="services.html">Services</a>
-            <a href="about.html">About Us</a>
-            <a href="contact.html">Contact</a>
-            <a href="track-order.html">Track Order</a>
-          </nav>
-          <div class="nav-actions">
-            <button class="search-btn">
-              <i class="fas fa-search"></i>
+        </div>
+      </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+      <a href="./track.html">Track Order</a>
+      <a href="./login.html">Login</a>
+      <a href="./register.html">Register</a>
+        </div>
+        
+    <div class="enterprises-container">
+        <div class="enterprises-header">
+            <h1>Choose Your Printing Enterprise</h1>
+            <p>Select from our trusted network of professional printing service providers</p>
+        </div>
+        
+        <div class="enterprises-grid" id="enterprisesGrid">
+            <!-- Enterprise cards will be dynamically loaded here -->
+              </div>
+            </div>
+
+    <script>
+        // Sample enterprise data
+        const enterprises = [
+            {
+                id: 'kebs',
+                name: "KEBS Printing Enterprise",
+                logo: "fa-building",
+                image: "fa-print",
+                rating: 5.0,
+                reviews: 500,
+                orders: 2500,
+                responseTime: "1 hour",
+                features: [
+                    "Government-certified printing",
+                    "Quality assurance",
+                    "Standardized services",
+                    "Official documentation"
+                ],
+                type: "premium",
+                isKebs: true
+            },
+            {
+                id: 1,
+                name: "PrintMaster Pro",
+                logo: "fa-building",
+                image: "fa-print",
+                rating: 4.8,
+                reviews: 245,
+                orders: 1200,
+                responseTime: "2 hours",
+                features: [
+                    "High-quality printing",
+                    "Express delivery",
+                    "Custom designs",
+                    "24/7 support"
+                ],
+                type: "premium"
+            },
+            {
+                id: 2,
+                name: "QuickPrint Solutions",
+                logo: "fa-building",
+                image: "fa-print",
+                rating: 4.5,
+                reviews: 180,
+                orders: 850,
+                responseTime: "4 hours",
+                features: [
+                    "Fast turnaround",
+                    "Bulk discounts",
+                    "Quality assurance",
+                    "Online tracking"
+                ],
+                type: "standard"
+            },
+            {
+                id: 3,
+                name: "Express Print Hub",
+                logo: "fa-building",
+                image: "fa-print",
+                rating: 4.7,
+                reviews: 320,
+                orders: 1500,
+                responseTime: "1 hour",
+                features: [
+                    "Same-day delivery",
+                    "Premium materials",
+                    "Design assistance",
+                    "Quality guarantee"
+                ],
+                type: "express"
+            }
+        ];
+
+        // Render enterprise cards
+        function renderEnterprises(enterprisesToRender) {
+            const grid = document.getElementById('enterprisesGrid');
+            grid.innerHTML = enterprisesToRender.map(enterprise => `
+                <div class="enterprise-card ${enterprise.isKebs ? 'kebs-enterprise' : ''}">
+                    ${enterprise.isKebs ? '<div class="kebs-badge">KEBS Certified</div>' : ''}
+                    <div class="enterprise-image">
+                        <i class="fas ${enterprise.image} fa-4x"></i>
+                    </div>
+                    <div class="enterprise-content">
+                        <div class="enterprise-header">
+                            <div class="enterprise-logo">
+                                <i class="fas ${enterprise.logo} fa-2x"></i>
+                            </div>
+                            <div class="enterprise-info">
+                                <h3>${enterprise.name}</h3>
+                                <div class="enterprise-rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>${enterprise.rating} (${enterprise.reviews} reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="enterprise-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">${enterprise.orders}+</div>
+                                <div class="stat-label">Orders</div>
+      </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${enterprise.responseTime}</div>
+                                <div class="stat-label">Response Time</div>
+        </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${enterprise.rating}</div>
+                                <div class="stat-label">Rating</div>
+            </div>
+          </div>
+          
+                        <div class="enterprise-features">
+                            <ul class="feature-list">
+                                ${enterprise.features.map(feature => `
+                                    <li class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>${feature}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+          </div>
+          
+                        <div class="enterprise-actions">
+                            ${enterprise.isKebs ? 
+                                `<a href="./kebs-dashboard.html" class="btn btn-primary">Access KEBS Dashboard</a>` :
+                                `<a href="./customize-tarpaulin.html?enterprise=${enterprise.id}" class="btn btn-primary">Select</a>`
+                            }
+                            <a href="#" class="btn btn-outline">View Details</a>
+          </div>
+        </div>
+      </div>
+            `).join('');
+        }
+
+        // Search and filter functionality
+        const searchInput = document.getElementById('enterpriseSearch');
+        const filterSelect = document.getElementById('enterpriseFilter');
+
+        function filterEnterprises() {
+            const query = searchInput.value.toLowerCase();
+            const filter = filterSelect.value;
+            
+            const filteredEnterprises = enterprises.filter(enterprise => {
+                const matchesSearch = enterprise.name.toLowerCase().includes(query);
+                const matchesFilter = filter === 'all' || enterprise.type === filter;
+                return matchesSearch && matchesFilter;
+            });
+            
+            renderEnterprises(filteredEnterprises);
+        }
+
+        searchInput.addEventListener('input', filterEnterprises);
+        filterSelect.addEventListener('change', filterEnterprises);
+
+        // Initial render
+        renderEnterprises(enterprises);
+
+        // Mobile search functionality
+        const mobileSearchBtn = document.querySelector('.mobile-search-btn');
+        const mobileSearchOverlay = document.getElementById('mobileSearchOverlay');
+        const mobileSearchClose = document.querySelector('.mobile-search-close');
+        const mobileEnterpriseSearch = document.getElementById('mobileEnterpriseSearch');
+        const mobileEnterpriseFilter = document.getElementById('mobileEnterpriseFilter');
+
+        mobileSearchBtn.addEventListener('click', () => {
+            mobileSearchOverlay.classList.add('active');
+            mobileEnterpriseSearch.focus();
+        });
+
+        mobileSearchClose.addEventListener('click', () => {
+            mobileSearchOverlay.classList.remove('active');
+        });
+
+        // Close overlay when clicking outside
+        mobileSearchOverlay.addEventListener('click', (e) => {
+            if (e.target === mobileSearchOverlay) {
+                mobileSearchOverlay.classList.remove('active');
+            }
+        });
+
+        // Sync mobile search with main search
+        mobileEnterpriseSearch.addEventListener('input', (e) => {
+            document.getElementById('enterpriseSearch').value = e.target.value;
+            filterEnterprises();
+        });
+
+        mobileEnterpriseFilter.addEventListener('change', (e) => {
+            document.getElementById('enterpriseFilter').value = e.target.value;
+            filterEnterprises();
+        });
+    </script>
+
+    <!-- Messaging Widget -->
+    <div class="messaging-widget" style="display: block !important;">
+        <div class="messaging-header" id="messagingHeader">
+            <div class="messaging-title">
+                <i class="fas fa-comments"></i>
+                <span>Chat with PrintMaster Pro</span>
+            </div>
+            <button class="messaging-minimize" id="messagingMinimize">
+                <i class="fas fa-minus"></i>
             </button>
-            <a href="login.html" class="login-btn">Login</a>
-          </div>
-          <button class="mobile-menu-btn">
-            <i class="fas fa-bars"></i>
-          </button>
         </div>
-      </header>
-
-      <!-- Mobile Menu -->
-      <nav class="mobile-menu">
-        <div class="mobile-menu-header">
-          <div class="logo">
-            <a href="index.html">OPSMS</a>
-          </div>
-          <button class="mobile-menu-close">
-            <i class="fas fa-times"></i>
-          </button>
+        <div class="messaging-body" id="messagingBody">
+            <div class="messaging-messages" id="messagingMessages">
+                <div class="message system">
+                    <p>👋 Hi! I'm Sarah from PrintMaster Pro. How can I help you with your printing needs today?</p>
+                    <span class="message-time">10:00 AM</span>
+                </div>
+                <div class="message user">
+                    <p>Hi! I need to print some business cards.</p>
+                    <span class="message-time">10:01 AM</span>
+                </div>
+                <div class="message system">
+                    <p>Great choice! We offer premium business card printing with various options:</p>
+                    <ul style="margin: 5px 0; padding-left: 20px;">
+                        <li>Standard (24hr delivery)</li>
+                        <li>Premium (12hr delivery)</li>
+                        <li>Express (6hr delivery)</li>
+                    </ul>
+                    <p>Which option would you prefer?</p>
+                    <span class="message-time">10:02 AM</span>
+                </div>
+            </div>
+            <div class="messaging-input">
+                <input type="text" id="messageInput" placeholder="Type your message...">
+                <button id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
         </div>
-        <div class="mobile-menu-content">
-          <a href="services.html">Services</a>
-          <a href="about.html">About Us</a>
-          <a href="contact.html">Contact</a>
-          <a href="track-order.html">Track Order</a>
-          <div class="mobile-menu-actions">
-            <a href="login.html" class="btn btn-primary">Login</a>
-            <a href="register.html" class="btn btn-outline">Register</a>
-          </div>
-        </div>
-      </nav>
-
-      <!-- Hero Section -->
-      <section class="hero">
-        <div class="container">
-          <div class="hero-content">
-            <h1>Premium Services at Affordable Prices</h1>
-            <p>Experience high-quality printing and promotional services with fast delivery across the Philippines.</p>
-            <div class="hero-buttons">
-              <a href="product.html" class="btn btn-primary">Order & Upload</a>
-              <a href="services.html" class="btn btn-outline">View Services</a>
-            </div>
-          </div>
-          <div class="hero-image">
-            <img src="https://via.placeholder.com/600x400" alt="OPSMS Services">
-          </div>
-        </div>
-      </section>
-
-      <!-- Features Section -->
-      <section class="features">
-        <div class="container">
-          <h2>Why Choose OPSMS?</h2>
-          <div class="features-grid">
-            <div class="feature-card">
-              <i class="fas fa-truck-fast"></i>
-              <h3>Fast Delivery</h3>
-              <p>Quick turnaround times with reliable delivery across the Philippines.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-medal"></i>
-              <h3>Premium Quality</h3>
-              <p>High-quality materials and printing for professional results.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-hand-holding-dollar"></i>
-              <h3>Affordable Prices</h3>
-              <p>Competitive pricing with no compromise on quality.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-headset"></i>
-              <h3>24/7 Support</h3>
-              <p>Round-the-clock customer support for all your needs.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Services Preview -->
-      <section class="services-preview">
-        <div class="container">
-          <h2>Our Popular Services</h2>
-          <p class="section-intro">Discover our most requested services for your business and personal needs.</p>
-          <div class="services-grid">
-            <!-- Service cards will be populated by JavaScript -->
-          </div>
-          <div class="section-cta">
-            <a href="services.html" class="btn btn-primary">View All Services</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Upload Feature -->
-      <section class="upload-feature">
-        <div class="container">
-          <div class="upload-feature-grid">
-            <div class="upload-feature-content">
-              <h2>Easy File Upload</h2>
-              <p>Upload your design files quickly and securely with our user-friendly system.</p>
-              <ul class="upload-feature-list">
-                <li><i class="fas fa-check"></i> Drag and drop functionality</li>
-                <li><i class="fas fa-check"></i> Preview before submission</li>
-                <li><i class="fas fa-check"></i> Secure file handling</li>
-                <li><i class="fas fa-check"></i> Automatic format verification</li>
-              </ul>
-              <div class="upload-feature-cta">
-                <a href="product.html" class="btn btn-primary">Try It Now</a>
-              </div>
-            </div>
-            <div class="upload-feature-image">
-              <img src="https://via.placeholder.com/600x400" alt="File Upload System">
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Testimonials -->
-      <section class="testimonials">
-        <div class="container">
-          <h2>What Our Customers Say</h2>
-          <div class="testimonials-grid">
-            <div class="testimonial-card">
-              <div class="testimonial-content">
-                <p>"Excellent service and quality! The team at OPSMS delivered my order on time and exceeded my expectations."</p>
-              </div>
-              <div class="testimonial-author">
-                <h4>John Doe</h4>
-                <p>Business Owner</p>
-              </div>
-            </div>
-            <div class="testimonial-card">
-              <div class="testimonial-content">
-                <p>"Fast delivery and great customer support. Will definitely order again!"</p>
-              </div>
-              <div class="testimonial-author">
-                <h4>Jane Smith</h4>
-                <p>Marketing Manager</p>
-              </div>
-            </div>
-            <div class="testimonial-card">
-              <div class="testimonial-content">
-                <p>"The quality of their products is outstanding. Very satisfied with my purchase."</p>
-              </div>
-              <div class="testimonial-author">
-                <h4>Mike Johnson</h4>
-                <p>Event Organizer</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA Section -->
-      <section class="cta">
-        <div class="container">
-          <h2>Ready to Get Started?</h2>
-          <p>Join thousands of satisfied customers who trust OPSMS for their printing and promotional needs.</p>
-          <div class="cta-buttons">
-            <a href="register.html" class="btn btn-primary">Create Account</a>
-            <a href="contact.html" class="btn btn-outline">Contact Us</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Footer -->
-      <footer class="footer">
-        <div class="container">
-          <div class="footer-grid">
-            <div class="footer-section">
-              <h3>OPSMS</h3>
-              <p>Premium services at affordable prices. Fast delivery across the Philippines.</p>
-            </div>
-            <div class="footer-section">
-              <h3>Quick Links</h3>
-              <ul>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="track-order.html">Track Order</a></li>
-              </ul>
-            </div>
-            <div class="footer-section">
-              <h3>Follow Us</h3>
-              <div class="social-links">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="footer-bottom">
-            <p>&copy; 2024 OPSMS. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+        <button class="messaging-toggle" id="messagingToggle" style="display: none;">
+            <i class="fas fa-comments"></i>
+        </button>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        // Messaging Widget Functionality
+        const messagingWidget = document.querySelector('.messaging-widget');
+        const messagingToggle = document.getElementById('messagingToggle');
+        const messagingMinimize = document.getElementById('messagingMinimize');
+        const messagingHeader = document.getElementById('messagingHeader');
+        const messagingBody = document.getElementById('messagingBody');
+        const messageInput = document.getElementById('messageInput');
+        const sendMessage = document.getElementById('sendMessage');
+        const messagingMessages = document.getElementById('messagingMessages');
+
+        // Sample responses based on user input
+        const sampleResponses = {
+            default: [
+                "I can help you with that! What specific details would you like to know?",
+                "We offer competitive pricing for all our services. Would you like a quote?",
+                "I can guide you through our ordering process. What would you like to know first?"
+            ],
+            business: [
+                "For business cards, we offer premium paper quality and various finishes. What's your preferred style?",
+                "Would you like to see our business card templates? We have both classic and modern designs.",
+                "We can print your business cards in 24 hours. How many cards do you need?"
+            ],
+            tshirt: [
+                "We offer both screen printing and digital printing for t-shirts. Which method do you prefer?",
+                "What size and quantity of t-shirts are you looking to print?",
+                "We can help you with custom designs or use your existing artwork."
+            ],
+            banner: [
+                "We print banners in various sizes. What dimensions do you need?",
+                "Would you like indoor or outdoor banner printing?",
+                "We offer both standard and premium banner materials. Which would you prefer?"
+            ]
+        };
+
+        // Toggle widget visibility
+        messagingToggle.addEventListener('click', () => {
+            messagingWidget.classList.remove('hidden');
+            messagingToggle.style.display = 'none';
+        });
+
+        // Minimize widget
+        messagingMinimize.addEventListener('click', (e) => {
+            e.stopPropagation();
+            messagingWidget.classList.add('minimized');
+            messagingToggle.style.display = 'flex';
+        });
+
+        // Restore widget
+        messagingHeader.addEventListener('click', () => {
+            if (messagingWidget.classList.contains('minimized')) {
+                messagingWidget.classList.remove('minimized');
+                messagingToggle.style.display = 'none';
+            }
+        });
+
+        // Get appropriate response based on user message
+        function getResponse(message) {
+            message = message.toLowerCase();
+            if (message.includes('business card') || message.includes('card')) {
+                return sampleResponses.business[Math.floor(Math.random() * sampleResponses.business.length)];
+            } else if (message.includes('tshirt') || message.includes('shirt') || message.includes('t-shirt')) {
+                return sampleResponses.tshirt[Math.floor(Math.random() * sampleResponses.tshirt.length)];
+            } else if (message.includes('banner') || message.includes('tarpaulin')) {
+                return sampleResponses.banner[Math.floor(Math.random() * sampleResponses.banner.length)];
+            } else {
+                return sampleResponses.default[Math.floor(Math.random() * sampleResponses.default.length)];
+            }
+        }
+
+        // Send message
+        function sendUserMessage() {
+            const message = messageInput.value.trim();
+            if (message) {
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message user';
+                messageElement.innerHTML = `
+                    <p>${message}</p>
+                    <span class="message-time">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                `;
+                messagingMessages.appendChild(messageElement);
+                messageInput.value = '';
+                messagingMessages.scrollTop = messagingMessages.scrollHeight;
+
+                // Simulate response after 1 second
+                setTimeout(() => {
+                    const responseElement = document.createElement('div');
+                    responseElement.className = 'message system';
+                    const response = getResponse(message);
+                    responseElement.innerHTML = `
+                        <p>${response}</p>
+                        <span class="message-time">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                    `;
+                    messagingMessages.appendChild(responseElement);
+                    messagingMessages.scrollTop = messagingMessages.scrollHeight;
+                }, 1000);
+            }
+        }
+
+        sendMessage.addEventListener('click', sendUserMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendUserMessage();
+            }
+        });
+    </script>
+
+    <!-- Add notification container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <script>
+        // Notification System
+        class NotificationSystem {
+            constructor() {
+                this.container = document.getElementById('notificationContainer');
+            }
+
+            show({ title, message, type = 'info', duration = 5000 }) {
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
+                
+                const icon = this.getIcon(type);
+                
+                notification.innerHTML = `
+                    <i class="fas ${icon} notification-icon"></i>
+                    <div class="notification-content">
+                        <div class="notification-title">${title}</div>
+                        <div class="notification-message">${message}</div>
+                    </div>
+                    <button class="notification-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="notification-progress"></div>
+                `;
+
+                this.container.appendChild(notification);
+
+                // Trigger animation
+                setTimeout(() => notification.classList.add('show'), 100);
+
+                // Add close button functionality
+                const closeBtn = notification.querySelector('.notification-close');
+                closeBtn.addEventListener('click', () => this.close(notification));
+
+                // Auto close after duration
+                if (duration > 0) {
+                    setTimeout(() => this.close(notification), duration);
+                }
+
+                return notification;
+            }
+
+            close(notification) {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }
+
+            getIcon(type) {
+                switch(type) {
+                    case 'success': return 'fa-check-circle';
+                    case 'warning': return 'fa-exclamation-triangle';
+                    case 'error': return 'fa-times-circle';
+                    default: return 'fa-info-circle';
+                }
+            }
+        }
+
+        // Initialize notification system
+        const notifications = new NotificationSystem();
+
+        // Example usage for enterprise selection
+        document.querySelectorAll('.enterprise-actions .btn-primary').forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (!e.target.href.includes('kebs-dashboard.html')) {
+                    e.preventDefault();
+                    notifications.show({
+                        title: 'Enterprise Selected',
+                        message: 'You have selected a printing enterprise. Redirecting to customization page...',
+                        type: 'success'
+                    });
+                    setTimeout(() => {
+                        window.location.href = e.target.href;
+                    }, 1500);
+                }
+            });
+        });
+    </script>
   </body>
 </html>

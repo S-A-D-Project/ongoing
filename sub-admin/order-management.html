@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Management - OPSMS</title>
+    <link rel="stylesheet" href="sub-admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="sub-admin-container">
+        <!-- Sidebar Overlay for Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="document.querySelector('.sidebar').classList.remove('sidebar-open'); this.style.display='none';"></div>
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../images/Gemini_Generated_Image_wafkqlwafkqlwafk.PNG" alt="Printing Services Logo" style="height:40px;">
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="order-management.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Order Management</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="product-management.html">
+                            <i class="fas fa-box"></i>
+                            <span>Product Management</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tracking-management.html">
+                            <i class="fas fa-truck"></i>
+                            <span>Tracking Management</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../login.html" class="btn btn-outline">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <button class="hamburger" id="sidebarToggle" aria-label="Open sidebar"><i class="fas fa-bars"></i></button>
+                <div class="header-left">
+                    <h1>Order Management</h1>
+                    <p class="welcome-text">Manage and process orders here.</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-container">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search orders...">
+                    </div>
+                    <div class="user-actions">
+                        <button class="btn-icon notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge">3</span>
+                        </button>
+                        <div class="user-profile" id="userProfileDropdown">
+                            <img src="https://via.placeholder.com/40" alt="Profile">
+                            <div class="profile-info">
+                                <span class="username">Admin User</span>
+                                <span class="role">Sub Admin</span>
+                            </div>
+                            <i class="fas fa-caret-down"></i>
+                            <div class="dropdown-menu" id="dropdownMenu">
+                                <a href="#" class="dropdown-item"><i class="fas fa-user"></i> Profile</a>
+                                <a href="#" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="../login.html" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <!-- Order Management Content Here -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h2>All Orders</h2>
+                        <a href="#" class="btn btn-outline" id="addOrderBtn"><i class="fas fa-plus"></i> Add Order</a>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Order #</th>
+                                    <th>Customer</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Payment</th>
+                                    <th>Total</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orderTableBody">
+                                <tr>
+                                    <td>#12345</td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" alt="John Doe" class="customer-avatar">
+                                            <div class="customer-details">
+                                                <span class="customer-name">John Doe</span>
+                                                <span class="customer-email">john.doe@email.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>2024-03-15</td>
+                                    <td><span class="status-badge pending">Pending</span></td>
+                                    <td><span class="payment-badge unpaid">Unpaid</span></td>
+                                    <td>₱299.99</td>
+                                    <td class="actions">
+                                        <button class="action-btn view-btn" title="View" onclick="viewOrder('12345')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="action-btn edit-btn" title="Edit" onclick="editOrder('12345')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete-btn" title="Delete" onclick="deleteOrder('12345')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#12346</td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <img src="https://ui-avatars.com/api/?name=Jane+Smith&background=random" alt="Jane Smith" class="customer-avatar">
+                                            <div class="customer-details">
+                                                <span class="customer-name">Jane Smith</span>
+                                                <span class="customer-email">jane.smith@email.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>2024-03-14</td>
+                                    <td><span class="status-badge processing">Processing</span></td>
+                                    <td><span class="payment-badge paid">Paid</span></td>
+                                    <td>₱599.99</td>
+                                    <td class="actions">
+                                        <button class="action-btn view-btn" title="View" onclick="viewOrder('12346')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="action-btn edit-btn" title="Edit" onclick="editOrder('12346')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete-btn" title="Delete" onclick="deleteOrder('12346')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#12347</td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <img src="https://ui-avatars.com/api/?name=Bob+Johnson&background=random" alt="Bob Johnson" class="customer-avatar">
+                                            <div class="customer-details">
+                                                <span class="customer-name">Bob Johnson</span>
+                                                <span class="customer-email">bob.johnson@email.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>2024-03-13</td>
+                                    <td><span class="status-badge ready">Ready for Pickup</span></td>
+                                    <td><span class="payment-badge paid">Paid</span></td>
+                                    <td>₱1,299.99</td>
+                                    <td class="actions">
+                                        <button class="action-btn view-btn" title="View" onclick="viewOrder('12347')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="action-btn edit-btn" title="Edit" onclick="editOrder('12347')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete-btn" title="Delete" onclick="deleteOrder('12347')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#12348</td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <img src="https://ui-avatars.com/api/?name=Sarah+Wilson&background=random" alt="Sarah Wilson" class="customer-avatar">
+                                            <div class="customer-details">
+                                                <span class="customer-name">Sarah Wilson</span>
+                                                <span class="customer-email">sarah.wilson@email.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>2024-03-12</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                    <td><span class="payment-badge paid">Paid</span></td>
+                                    <td>₱399.99</td>
+                                    <td class="actions">
+                                        <button class="action-btn view-btn" title="View" onclick="viewOrder('12348')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="action-btn edit-btn" title="Edit" onclick="editOrder('12348')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete-btn" title="Delete" onclick="deleteOrder('12348')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#12349</td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <img src="https://ui-avatars.com/api/?name=Mike+Brown&background=random" alt="Mike Brown" class="customer-avatar">
+                                            <div class="customer-details">
+                                                <span class="customer-name">Mike Brown</span>
+                                                <span class="customer-email">mike.brown@email.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>2024-03-11</td>
+                                    <td><span class="status-badge cancelled">Cancelled</span></td>
+                                    <td><span class="payment-badge refunded">Refunded</span></td>
+                                    <td>₱199.99</td>
+                                    <td class="actions">
+                                        <button class="action-btn view-btn" title="View" onclick="viewOrder('12349')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="action-btn edit-btn" title="Edit" onclick="editOrder('12349')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete-btn" title="Delete" onclick="deleteOrder('12349')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="order-management.js"></script>
+    <style>
+        /* Additional styles for order management */
+        .customer-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .customer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .customer-details {
+            display: flex;
+            flex-direction: column;
+        }
+        .customer-name {
+            font-weight: 500;
+            color: #1f2937;
+        }
+        .customer-email {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .status-badge.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .status-badge.processing {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        .status-badge.ready {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .status-badge.completed {
+            background: #f3f4f6;
+            color: #374151;
+        }
+        .status-badge.cancelled {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .action-btn {
+            padding: 0.5rem;
+            border: none;
+            background: none;
+            color: #6b7280;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .action-btn:hover {
+            color: #2563eb;
+        }
+        .action-btn.edit-btn:hover {
+            color: #059669;
+        }
+        .action-btn.delete-btn:hover {
+            color: #dc2626;
+        }
+        /* Additional styles for payment status */
+        .payment-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .payment-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .payment-badge.paid {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .payment-badge.paid::before {
+            background: #166534;
+        }
+        .payment-badge.unpaid {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .payment-badge.unpaid::before {
+            background: #991b1b;
+        }
+        .payment-badge.refunded {
+            background: #f3f4f6;
+            color: #374151;
+        }
+        .payment-badge.refunded::before {
+            background: #374151;
+        }
+        .payment-badge.partial {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .payment-badge.partial::before {
+            background: #92400e;
+        }
+    </style>
+</body>
+</html> 

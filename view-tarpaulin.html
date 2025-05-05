@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Tarpaulin - Printing Services</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .tarp-view-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            min-height: calc(100vh - 80px);
+        }
+        .tarp-view-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .tarp-preview-section {
+            position: sticky;
+            top: 2rem;
+        }
+        .tarp-preview-image {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 0.5rem;
+            transition: transform 0.4s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .view-controls {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+        .tarp-details {
+            padding: 1rem;
+        }
+        .tarp-specs {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+        }
+        .tarp-specs h3 {
+            margin-bottom: 1rem;
+            color: #1e40af;
+        }
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        .spec-item {
+            padding: 0.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .spec-label {
+            font-weight: 600;
+            color: #475569;
+        }
+        .price-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f0f9ff;
+            border-radius: 0.5rem;
+        }
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .price-item {
+            padding: 1rem;
+            background: white;
+            border-radius: 0.5rem;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .price-value {
+            font-size: 1.5rem;
+            color: #2563eb;
+            font-weight: 600;
+        }
+        .reviews-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+        }
+        .reviews-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .reviews-stats {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .average-rating {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #2563eb;
+        }
+        .rating-stars {
+            color: #f59e0b;
+            font-size: 1.25rem;
+        }
+        .review-form {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .review-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            resize: vertical;
+            min-height: 100px;
+        }
+        .star-rating {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .star-rating i {
+            color: #e2e8f0;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: color 0.2s;
+        }
+        .star-rating i:hover,
+        .star-rating i.active {
+            color: #f59e0b;
+        }
+        .review-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .review-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .reviewer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-weight: 600;
+        }
+        .review-date {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+        .review-content {
+            color: #1f2937;
+            line-height: 1.6;
+        }
+        @media (max-width: 768px) {
+            .tarp-view-grid {
+                grid-template-columns: 1fr;
+            }
+            .tarp-preview-section {
+                position: static;
+            }
+            .reviews-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+      <div class="container">
+        <a href="./" class="logo"><img src="images/Gemini_Generated_Image_wafkqlwafkqlwafk.PNG" alt="Printing Services Logo" style="height:40px;vertical-align:middle;"></a>
+        <div class="nav-links">
+          <a href="./track.html">Track Order</a>
+          <a href="./login.html" class="btn btn-outline">Login</a>
+          <a href="./register.html" class="btn btn-primary">Register</a>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+      <a href="./track.html">Track Order</a>
+      <a href="./login.html">Login</a>
+      <a href="./register.html">Register</a>
+    </div>
+
+    <section class="hero">
+    <div class="tarp-view-container">
+        <div class="tarp-view-grid">
+            <div class="tarp-preview-section">
+                <img id="tarpPreviewImg" src="https://images.unsplash.com/photo-1588412079929-791b9f563339?auto=format&fit=crop&q=80&w=1000" 
+                     alt="Tarp Preview" class="tarp-preview-image">
+                <div class="view-controls">
+                    <button class="btn btn-outline" id="tarpViewFront">Front View</button>
+                    <button class="btn btn-outline" id="tarpViewBack">Back View</button>
+                    <button class="btn btn-outline" id="tarpView3D">3D View</button>
+                </div>
+            </div>
+            
+            <div class="tarp-details">
+                <h1>Tarpaulin Printing</h1>
+                <p class="lead">High-quality tarpaulin printing for banners, signage, and outdoor displays.</p>
+                
+                <div class="tarp-specs">
+                    <h3>Specifications</h3>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <div class="spec-label">Material</div>
+                            <div>High-quality vinyl</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Weather Resistance</div>
+                            <div>UV and water resistant</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Print Quality</div>
+                            <div>High-resolution (1440 DPI)</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Finish</div>
+                            <div>Matte or glossy</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="price-section">
+                    <h3>Pricing</h3>
+                    <div class="price-grid">
+                        <div class="price-item">
+                            <div>2x3 ft</div>
+                            <div class="price-value">₱270</div>
+                        </div>
+                        <div class="price-item">
+                            <div>3x5 ft</div>
+                            <div class="price-value">₱675</div>
+                        </div>
+                        <div class="price-item">
+                            <div>4x6 ft</div>
+                            <div class="price-value">₱1,080</div>
+                        </div>
+                        <div class="price-item">
+                            <div>Custom Size</div>
+                            <div class="price-value">₱45/sq.ft</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons" style="margin-top: 2rem;">
+                    <a href="./customize-tarpaulin.html" class="btn btn-primary">Customize & Order</a>
+                    <a href="./" class="btn btn-outline" style="margin-left: 1rem;">Back to Home</a>
+                </div>
+
+                <!-- Reviews Section -->
+                <div class="reviews-section">
+                    <div class="reviews-header">
+                        <h3>Customer Reviews</h3>
+                        <div class="reviews-stats">
+                            <div class="average-rating">4.8</div>
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span>(128 reviews)</span>
+                        </div>
+                    </div>
+
+                    <!-- Review Form -->
+                    <div class="review-form">
+                        <h4>Write a Review</h4>
+                        <div class="star-rating" id="starRating">
+                            <i class="fas fa-star" data-rating="1"></i>
+                            <i class="fas fa-star" data-rating="2"></i>
+                            <i class="fas fa-star" data-rating="3"></i>
+                            <i class="fas fa-star" data-rating="4"></i>
+                            <i class="fas fa-star" data-rating="5"></i>
+                        </div>
+                        <textarea placeholder="Share your experience with this service..." id="reviewText"></textarea>
+                        <button class="btn btn-primary" id="submitReview">Submit Review</button>
+                    </div>
+
+                    <!-- Review List -->
+                    <div class="review-list" id="reviewList">
+                        <!-- Sample Reviews -->
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <div class="reviewer-avatar">JD</div>
+                                    <div>
+                                        <div class="reviewer-name">John Doe</div>
+                                        <div class="rating-stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="review-date">2 days ago</div>
+                            </div>
+                            <div class="review-content">
+                                Excellent quality and fast service! The tarpaulin was exactly as ordered and the colors were vibrant. Will definitely order again.
+                            </div>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <div class="reviewer-avatar">AS</div>
+                                    <div>
+                                        <div class="reviewer-name">Alice Smith</div>
+                                        <div class="rating-stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="review-date">1 week ago</div>
+                            </div>
+                            <div class="review-content">
+                                Good quality material and printing. The only reason for 4 stars is the slightly longer delivery time than expected.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Printing Services</h4>
+                    <p>Your trusted partner for all printing needs.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="./">Home</a>
+                    <a href="./services.html">Services</a>
+                    <a href="./track.html">Track Order</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p>Email: info@printitnow.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Printing Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const tarpPreviewImg = document.getElementById('tarpPreviewImg');
+        const tarpViewFront = document.getElementById('tarpViewFront');
+        const tarpViewBack = document.getElementById('tarpViewBack');
+        const tarpView3D = document.getElementById('tarpView3D');
+
+        tarpViewFront.onclick = () => {
+            tarpPreviewImg.style.transform = 'rotateY(0deg)';
+        };
+        tarpViewBack.onclick = () => {
+            tarpPreviewImg.style.transform = 'rotateY(180deg)';
+        };
+        tarpView3D.onclick = () => {
+            tarpPreviewImg.style.transform = 'rotateY(45deg) rotateX(10deg)';
+        };
+
+        // Review functionality
+        const starRating = document.getElementById('starRating');
+        const stars = starRating.querySelectorAll('i');
+        const reviewText = document.getElementById('reviewText');
+        const submitReview = document.getElementById('submitReview');
+        const reviewList = document.getElementById('reviewList');
+
+        let selectedRating = 0;
+
+        stars.forEach(star => {
+            star.addEventListener('mouseover', () => {
+                const rating = parseInt(star.dataset.rating);
+                updateStars(rating);
+            });
+
+            star.addEventListener('mouseout', () => {
+                updateStars(selectedRating);
+            });
+
+            star.addEventListener('click', () => {
+                selectedRating = parseInt(star.dataset.rating);
+                updateStars(selectedRating);
+            });
+        });
+
+        function updateStars(rating) {
+            stars.forEach(star => {
+                const starRating = parseInt(star.dataset.rating);
+                if (starRating <= rating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        submitReview.addEventListener('click', () => {
+            if (selectedRating === 0) {
+                alert('Please select a rating');
+                return;
+            }
+
+            if (!reviewText.value.trim()) {
+                alert('Please write a review');
+                return;
+            }
+
+            // Create new review
+            const newReview = document.createElement('div');
+            newReview.className = 'review-card';
+            newReview.innerHTML = `
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">You</div>
+                        <div>
+                            <div class="reviewer-name">You</div>
+                            <div class="rating-stars">
+                                ${Array(selectedRating).fill('<i class="fas fa-star"></i>').join('')}
+                                ${Array(5 - selectedRating).fill('<i class="far fa-star"></i>').join('')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-date">Just now</div>
+                </div>
+                <div class="review-content">
+                    ${reviewText.value}
+                </div>
+            `;
+
+            // Add to the top of the review list
+            reviewList.insertBefore(newReview, reviewList.firstChild);
+
+            // Reset form
+            selectedRating = 0;
+            updateStars(0);
+            reviewText.value = '';
+        });
+    </script>
+</body>
+</html> 

@@ -3,140 +3,371 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PrintPeso - Login</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="login.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', Arial, sans-serif;
+        }
+        .login-wrapper {
+            display: flex;
+            width: 100%;
+            max-width: 1000px;
+            min-height: 600px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 2rem;
+        }
+        .login-banner {
+            flex: 1;
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        .login-banner img {
+            width: 180px;
+            height: auto;
+            margin-bottom: 2.5rem;
+            object-fit: contain;
+        }
+        .login-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        .login-banner p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.7;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+        .login-container {
+            flex: 1;
+            padding: 3.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .login-header h1 {
+            font-size: 2rem;
+            color: #1e293b;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+        .login-header p {
+            color: #64748b;
+            font-size: 1rem;
+        }
+        .login-form {
+            width: 100%;
+            max-width: 360px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.95rem;
+            color: #334155;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        .input-with-icon {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .input-with-icon input {
+            width: 100%;
+            height: 48px;
+            padding: 0 1rem 0 2.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.2s;
+            background: #f8fafc;
+            line-height: 1.5;
+        }
+        .input-with-icon input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            outline: none;
+            background: #fff;
+        }
+        .input-with-icon i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 1.1rem;
+            pointer-events: none;
+            width: 20px;
+            text-align: center;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            padding: 0.25rem;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .toggle-password:hover {
+            color: #64748b;
+        }
+        .toggle-password i {
+            font-size: 1.1rem;
+        }
+        .forgot-password {
+            text-align: right;
+            margin-top: -0.5rem;
+            margin-bottom: 1.75rem;
+        }
+        .forgot-password a {
+            color: #2563eb;
+            font-size: 0.95rem;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+        .btn-login {
+            width: 100%;
+            padding: 0.875rem;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-login:hover {
+            background: #1e40af;
+            transform: translateY(-1px);
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 2rem 0;
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .divider::before {
+            margin-right: 1.25rem;
+        }
+        .divider::after {
+            margin-left: 1.25rem;
+        }
+        .social-login {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .social-btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            transform: translateY(-1px);
+        }
+        .social-btn i {
+            font-size: 1.35rem;
+        }
+        .social-btn.facebook i { color: #1877f2; }
+        .social-btn.google i { color: #ea4335; }
+        .social-btn.apple i { color: #000000; }
+        .register-link {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+            color: #64748b;
+        }
+        .register-link a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 0.5rem;
+        }
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: #ef4444;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .login-wrapper {
+                flex-direction: column;
+                max-width: 100%;
+                min-height: auto;
+                margin: 0;
+                border-radius: 0;
+            }
+            .login-banner {
+                display: none;
+            }
+            .login-container {
+                padding: 2rem 1.5rem;
+            }
+            .login-form {
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div id="root">
-        <!-- Navbar (same as front.html) -->
-        <header class="navbar">
-            <div class="container">
-                <div class="logo">
-                    <a href="front.html">PrintPeso</a>
+    <div class="login-wrapper">
+        <div class="login-banner">
+            <img src="images/Gemini_Generated_Image_wafkqlwafkqlwafk.PNG" alt="Logo">
+            <h2>Welcome</h2>
+            <p>Your trusted partner for all printing needs. From business cards to large format printing, we've got you covered.</p>
+        </div>
+        <div class="login-container">
+            <div class="login-header">
+                <h1>Login</h1>
+                <p>Welcome back! Please enter your details.</p>
+            </div>
+            <form class="login-form" id="loginForm">
+                <div class="error-message" id="errorMessage"></div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
                 </div>
-                <nav class="desktop-nav">
-                    <a href="services.html">Services</a>
-                    <a href="about.html">About Us</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="track-order.html">Track Order</a>
-                </nav>
-                <div class="nav-actions">
-                    <button class="search-btn">
-                        <i class="fas fa-search"></i>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                        <button type="button" class="toggle-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="forgot-password">
+                    <a href="#">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn-login">Login</button>
+                <div class="divider">or continue with</div>
+                <div class="social-login">
+                    <button type="button" class="social-btn facebook">
+                        <i class="fab fa-facebook-f"></i>
                     </button>
-                    <a href="login.html" class="login-btn active">Login</a>
+                    <button type="button" class="social-btn google">
+                        <i class="fab fa-google"></i>
+                    </button>
+                    <button type="button" class="social-btn apple">
+                        <i class="fab fa-apple"></i>
+                    </button>
                 </div>
-                <button class="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </header>
-
-        <!-- Login Section -->
-        <section class="login-page">
-            <div class="container">
-                <div class="login-container">
-                    <div class="login-header">
-                        <h1>Welcome Back</h1>
-                        <p>Sign in to your PrintPeso account</p>
-                    </div>
-
-                    <form id="loginForm" class="login-form">
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <div class="input-group">
-                                <i class="fas fa-envelope"></i>
-                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <div class="input-group">
-                                <i class="fas fa-lock"></i>
-                                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                                <button type="button" class="toggle-password">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="form-options">
-                            <label class="remember-me">
-                                <input type="checkbox" name="remember" id="remember">
-                                <span>Remember me</span>
-                            </label>
-                            <a href="forgot-password.html" class="forgot-password">Forgot Password?</a>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-
-                        <div class="social-login">
-                            <p>Or sign in with</p>
-                            <div class="social-buttons">
-                                <button type="button" class="btn btn-social btn-google">
-                                    <i class="fab fa-google"></i>
-                                    <span>Google</span>
-                                </button>
-                                <button type="button" class="btn btn-social btn-facebook">
-                                    <i class="fab fa-facebook-f"></i>
-                                    <span>Facebook</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="register-link">
-                            <p>Don't have an account? <a href="register.html">Create one</a></p>
-                        </div>
-                    </form>
+                <div class="register-link">
+                    Don't have an account? <a href="register.html">Sign up</a>
                 </div>
-            </div>
-        </section>
-
-        <!-- Footer (same as front.html) -->
-        <footer class="footer">
-            <div class="container">
-                <div class="footer-grid">
-                    <div class="footer-section">
-                        <h3>PrintPeso</h3>
-                        <p>Premium printing services at affordable prices. Fast delivery across the Philippines.</p>
-                    </div>
-                    <div class="footer-section">
-                        <h3>Quick Links</h3>
-                        <ul>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="track-order.html">Track Order</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h3>Contact Us</h3>
-                        <ul class="contact-info">
-                            <li><i class="fas fa-phone"></i> +63 912 345 6789</li>
-                            <li><i class="fas fa-envelope"></i> info@printpeso.com</li>
-                            <li><i class="fas fa-map-marker-alt"></i> 123 Print Street, Manila, Philippines</li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h3>Follow Us</h3>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2024 PrintPeso. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
+            </form>
+        </div>
     </div>
-    <script src="script.js"></script>
-    <script src="login.js"></script>
+
+    <script>
+        // Toggle password visibility
+        const togglePassword = document.querySelector('.toggle-password');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            togglePassword.querySelector('i').classList.toggle('fa-eye');
+            togglePassword.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+
+        // Form submission
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('errorMessage');
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Basic validation
+            if (!email || !password) {
+                errorMessage.textContent = 'Please fill in all fields';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            // Here you would typically make an API call to verify credentials
+            // For demo purposes, we'll just redirect to the dashboard
+            window.location.href = 'index.html';
+        });
+
+        // Social login buttons
+        document.querySelectorAll('.social-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Here you would implement social login logic
+                errorMessage.textContent = 'Social login coming soon!';
+                errorMessage.style.display = 'block';
+            });
+        });
+    </script>
 </body>
 </html> 

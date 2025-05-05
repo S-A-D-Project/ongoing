@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Professional Printing Services</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <meta name="description" content="Lovable Generated Project" />
+    <meta name="author" content="Lovable" />
+
+    <meta property="og:title" content="Professional Printing Services" />
+    <meta property="og:description" content="Lovable Generated Project" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+        }
+
+        .navbar-search {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 2rem;
+            position: relative;
+        }
+
+        .navbar-search input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            padding-right: 5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 0.75rem;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            background: var(--background-light);
+        }
+
+        .navbar-search input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            background: var(--white);
+        }
+
+        .navbar-search input::placeholder {
+            color: var(--text-light);
+        }
+
+        .navbar-search i {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            transition: color 0.3s ease;
+            pointer-events: none;
+        }
+
+        .navbar-search input:focus + i {
+            color: var(--primary-color);
+        }
+
+        .navbar-search select {
+            position: absolute;
+            right: 2.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            color: var(--text-light);
+            font-size: 0.875rem;
+            padding-right: 1rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B7280' d='M6 8.825L1.175 4 2.05 3.125 6 7.075 9.95 3.125 10.825 4z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            padding-right: 1.5rem;
+        }
+
+        .navbar-search select:hover {
+            color: var(--primary-color);
+        }
+
+        .navbar-search select:focus {
+            outline: none;
+            color: var(--primary-color);
+        }
+
+        .navbar-search select option {
+            background: var(--white);
+            color: var(--text-color);
+            padding: 0.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .navbar-search {
+                display: none;
+            }
+        }
+
+        /* Mobile Search Button */
+        .mobile-search-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-right: 1rem;
+        }
+
+        @media (max-width: 1024px) {
+            .mobile-search-btn {
+                display: block;
+            }
+        }
+
+        /* Mobile Search Overlay */
+        .mobile-search-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-search-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .mobile-search-container {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 4rem;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-search-overlay.active .mobile-search-container {
+            transform: translateY(0);
+        }
+
+        .mobile-search-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .mobile-search-close {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .dashboard-container {
+            min-height: calc(100vh - 80px);
+            background-color: var(--background-light);
+            padding: 2rem;
+            margin-top: 0;
+        }
+
+        .messaging-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .messaging-header {
+            background: #2563eb;
+            color: white;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .messaging-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .messaging-minimize {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .messaging-body {
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .messaging-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #f8fafc;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .message.system {
+            align-self: flex-start;
+            background: white;
+            color: #1f2937;
+            border: 1px solid #e5e7eb;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: #2563eb;
+            color: white;
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .messaging-input {
+            padding: 12px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 8px;
+            background: white;
+        }
+
+        .messaging-input input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .messaging-input input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+
+        .messaging-input button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .messaging-input button:hover {
+            background: #1d4ed8;
+        }
+
+        .messaging-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s;
+            z-index: 9999;
+        }
+
+        .messaging-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        .messaging-widget.hidden {
+            transform: translateY(100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .messaging-widget.minimized .messaging-body {
+            display: none;
+        }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <a href="./" class="logo"><img src="images/Gemini_Generated_Image_wafkqlwafkqlwafk.PNG" alt="Printing Services Logo" style="height:40px;vertical-align:middle;"></a>
+        <div class="navbar-search">
+            <input type="text" id="serviceSearch" placeholder="Search services...">
+            <select id="serviceFilter">
+                <option value="all">All Services</option>
+                <option value="printing">Printing Services</option>
+                <option value="promotional">Promotional Items</option>
+                <option value="awards">Awards & Recognition</option>
+            </select>
+            <i class="fas fa-search"></i>
+        </div>
+        <button class="mobile-search-btn" aria-label="Search">
+            <i class="fas fa-search"></i>
+        </button>
+        <div class="nav-links">
+          <a href="./track.html">Track Order</a>
+          <a href="./login.html" class="btn btn-outline">Login</a>
+          <a href="./register.html" class="btn btn-primary">Register</a>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Search Overlay -->
+    <div class="mobile-search-overlay" id="mobileSearchOverlay">
+        <div class="mobile-search-container">
+            <div class="mobile-search-header">
+                <h3>Search Services</h3>
+                <button class="mobile-search-close" aria-label="Close search">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="navbar-search">
+                <input type="text" id="mobileServiceSearch" placeholder="Search services...">
+                <select id="mobileServiceFilter">
+                    <option value="all">All Services</option>
+                    <option value="printing">Printing Services</option>
+                    <option value="promotional">Promotional Items</option>
+                    <option value="awards">Awards & Recognition</option>
+                </select>
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+      <a href="./track.html">Track Order</a>
+      <a href="./login.html">Login</a>
+      <a href="./register.html">Register</a>
+    </div>
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>Professional Printing Services <span class="text-primary">For Everyone</span></h1>
+            <p>From tarpaulins to business cards, t-shirts to mugs, we offer high-quality printing solutions for all your needs.</p>
+            <div class="hero-buttons">
+              <a href="#services-section" class="btn btn-primary">View Services</a>
+              <a href="#about" class="btn btn-outline">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services-section" class="services">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our Services</h2>
+          <p>Explore our wide range of high-quality printing services tailored for your specific needs.</p>
+        </div>
+        
+        <div id="servicesGrid" class="services-grid">
+          <!-- Services will be dynamically loaded here -->
+          <div class="service-card" id="tarpaulin-card">
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1588412079929-791b9f563339?auto=format&fit=crop&q=80&w=1000" alt="Tarpaulin Printing">
+            </div>
+            <div class="service-content">
+              <h3>Tarpaulin Printing</h3>
+              <p>High-quality tarpaulin printing for banners, signage, and outdoor displays.</p>
+              <div class="service-actions">
+                <a href="./view-tarpaulin.html" class="btn btn-outline">View</a>
+                <a href="./enterprises.html" class="btn btn-primary">Choose Enterprise</a>
+              </div>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1588412079929-791b9f563339?auto=format&fit=crop&q=80&w=1000" alt="Digital Printing">
+            </div>
+            <div class="service-content">
+              <h3>Digital Printing</h3>
+              <p>Fast and efficient digital printing services for all your business needs.</p>
+              <div class="service-actions">
+                <a href="./enterprises.html" class="btn btn-primary">Choose Enterprise</a>
+              </div>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1588412079929-791b9f563339?auto=format&fit=crop&q=80&w=1000" alt="Offset Printing">
+            </div>
+            <div class="service-content">
+              <h3>Offset Printing</h3>
+              <p>Professional offset printing for large volume projects with consistent quality.</p>
+              <div class="service-actions">
+                <a href="./enterprises.html" class="btn btn-primary">Choose Enterprise</a>
+              </div>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1588412079929-791b9f563339?auto=format&fit=crop&q=80&w=1000" alt="Large Format Printing">
+            </div>
+            <div class="service-content">
+              <h3>Large Format Printing</h3>
+              <p>Premium large format printing for banners, posters, and signage.</p>
+              <div class="service-actions">
+                <a href="./enterprises.html" class="btn btn-primary">Choose Enterprise</a>
+              </div>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1588412079929-791b9f563339?auto=format&fit=crop&q=80&w=1000" alt="Screen Printing">
+            </div>
+            <div class="service-content">
+              <h3>Screen Printing</h3>
+              <p>Custom screen printing for textiles, promotional items, and merchandise.</p>
+              <div class="service-actions">
+                <a href="./enterprises.html" class="btn btn-primary">Choose Enterprise</a>
+              </div>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1588412079929-791b9f563339?auto=format&fit=crop&q=80&w=1000" alt="3D Printing">
+            </div>
+            <div class="service-content">
+              <h3>3D Printing</h3>
+              <p>Advanced 3D printing services for prototypes and custom designs.</p>
+              <div class="service-actions">
+                <a href="./enterprises.html" class="btn btn-primary">Choose Enterprise</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="why-us">
+      <div class="container">
+        <div class="section-header">
+          <h2>Why Choose Us</h2>
+          <p>We pride ourselves on delivering high-quality printing services with exceptional customer satisfaction.</p>
+        </div>
+        
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Quality Guaranteed</h3>
+            <p>We use top-grade materials and advanced printing technology to ensure excellent results every time.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3>Fast Turnaround</h3>
+            <p>We understand the importance of deadlines and strive to deliver your orders on time, every time.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-pencil-ruler"></i>
+            </div>
+            <h3>Custom Designs</h3>
+            <p>Express your creativity with our custom design options or let our expert designers help you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>Printing Services</h4>
+            <p>Your trusted partner for all printing needs.</p>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <a href="./">Home</a>
+            <a href="./services.html">Services</a>
+            <a href="./track.html">Track Order</a>
+          </div>
+          <div class="footer-section">
+            <h4>Contact Us</h4>
+            <p>Email: info@printitnow.com</p>
+            <p>Phone: (555) 123-4567</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 Printing Services. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./js/main.js"></script>
+    <script>
+        // Existing script content...
+
+        // Mobile search functionality
+        const mobileSearchBtn = document.querySelector('.mobile-search-btn');
+        const mobileSearchOverlay = document.getElementById('mobileSearchOverlay');
+        const mobileSearchClose = document.querySelector('.mobile-search-close');
+        const mobileServiceSearch = document.getElementById('mobileServiceSearch');
+        const mobileServiceFilter = document.getElementById('mobileServiceFilter');
+
+        mobileSearchBtn.addEventListener('click', () => {
+            mobileSearchOverlay.classList.add('active');
+            mobileServiceSearch.focus();
+        });
+
+        mobileSearchClose.addEventListener('click', () => {
+            mobileSearchOverlay.classList.remove('active');
+        });
+
+        // Close overlay when clicking outside
+        mobileSearchOverlay.addEventListener('click', (e) => {
+            if (e.target === mobileSearchOverlay) {
+                mobileSearchOverlay.classList.remove('active');
+            }
+        });
+
+        // Sync mobile search with main search
+        mobileServiceSearch.addEventListener('input', (e) => {
+            document.getElementById('serviceSearch').value = e.target.value;
+            filterServices();
+        });
+
+        mobileServiceFilter.addEventListener('change', (e) => {
+            document.getElementById('serviceFilter').value = e.target.value;
+            filterServices();
+        });
+    </script>
+
+    <!-- Messaging Widget -->
+    <div class="messaging-widget" style="display: block !important;">
+        <div class="messaging-header" id="messagingHeader">
+            <div class="messaging-title">
+                <i class="fas fa-comments"></i>
+                <span>Chat with KEBS Printing</span>
+            </div>
+            <button class="messaging-minimize" id="messagingMinimize">
+                <i class="fas fa-minus"></i>
+            </button>
+        </div>
+        <div class="messaging-body" id="messagingBody">
+            <div class="messaging-messages" id="messagingMessages">
+                <div class="message system">
+                    <p>👋 Hello! I'm John from KEBS Printing Services. How can I assist you with your official printing needs today?</p>
+                    <span class="message-time">10:00 AM</span>
+                </div>
+                <div class="message user">
+                    <p>Hi! I need to print some official documents.</p>
+                    <span class="message-time">10:01 AM</span>
+                </div>
+                <div class="message system">
+                    <p>As a KEBS-certified printing service, we offer various official document printing options:</p>
+                    <ul style="margin: 5px 0; padding-left: 20px;">
+                        <li>Certified Business Documents</li>
+                        <li>Official Letterheads</li>
+                        <li>Government Forms</li>
+                        <li>Quality-Assured Materials</li>
+                    </ul>
+                    <p>What type of official document do you need to print?</p>
+                    <span class="message-time">10:02 AM</span>
+                </div>
+            </div>
+            <div class="messaging-input">
+                <input type="text" id="messageInput" placeholder="Type your message...">
+                <button id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+        <button class="messaging-toggle" id="messagingToggle" style="display: none;">
+            <i class="fas fa-comments"></i>
+        </button>
+    </div>
+
+    <script>
+        // Messaging Widget Functionality
+        const messagingWidget = document.querySelector('.messaging-widget');
+        const messagingToggle = document.getElementById('messagingToggle');
+        const messagingMinimize = document.getElementById('messagingMinimize');
+        const messagingHeader = document.getElementById('messagingHeader');
+        const messagingBody = document.getElementById('messagingBody');
+        const messageInput = document.getElementById('messageInput');
+        const sendMessage = document.getElementById('sendMessage');
+        const messagingMessages = document.getElementById('messagingMessages');
+
+        // Sample responses based on user input
+        const sampleResponses = {
+            default: [
+                "As a KEBS-certified provider, we ensure the highest quality standards. How can I help you today?",
+                "We can assist you with any official printing needs. What would you like to know?",
+                "Our team is trained in government printing standards. What can I help you with?"
+            ],
+            document: [
+                "We offer certified document printing with official watermarks and security features. What type of document do you need?",
+                "All our documents are printed on official-grade paper with proper certification. Would you like to know more about our security features?",
+                "We can print your documents with official letterheads and certification marks. What's your preferred format?"
+            ],
+            letterhead: [
+                "We offer premium letterhead printing with your official logo and details. Would you like to see our templates?",
+                "Our letterheads are printed on high-quality paper with official certification. What design would you prefer?",
+                "We can customize your letterhead with official branding. How many sets do you need?"
+            ],
+            form: [
+                "We print official government forms with proper certification. Which forms do you need?",
+                "All our forms are printed according to government standards. Would you like to see our catalog?",
+                "We can print forms in both standard and custom formats. What's your requirement?"
+            ]
+        };
+
+        // Toggle widget visibility
+        messagingToggle.addEventListener('click', () => {
+            messagingWidget.classList.remove('hidden');
+            messagingToggle.style.display = 'none';
+        });
+
+        // Minimize widget
+        messagingMinimize.addEventListener('click', (e) => {
+            e.stopPropagation();
+            messagingWidget.classList.add('minimized');
+            messagingToggle.style.display = 'flex';
+        });
+
+        // Restore widget
+        messagingHeader.addEventListener('click', () => {
+            if (messagingWidget.classList.contains('minimized')) {
+                messagingWidget.classList.remove('minimized');
+                messagingToggle.style.display = 'none';
+            }
+        });
+
+        // Get appropriate response based on user message
+        function getResponse(message) {
+            message = message.toLowerCase();
+            if (message.includes('document') || message.includes('paper')) {
+                return sampleResponses.document[Math.floor(Math.random() * sampleResponses.document.length)];
+            } else if (message.includes('letterhead') || message.includes('letter head')) {
+                return sampleResponses.letterhead[Math.floor(Math.random() * sampleResponses.letterhead.length)];
+            } else if (message.includes('form') || message.includes('application')) {
+                return sampleResponses.form[Math.floor(Math.random() * sampleResponses.form.length)];
+            } else {
+                return sampleResponses.default[Math.floor(Math.random() * sampleResponses.default.length)];
+            }
+        }
+
+        // Send message
+        function sendUserMessage() {
+            const message = messageInput.value.trim();
+            if (message) {
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message user';
+                messageElement.innerHTML = `
+                    <p>${message}</p>
+                    <span class="message-time">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                `;
+                messagingMessages.appendChild(messageElement);
+                messageInput.value = '';
+                messagingMessages.scrollTop = messagingMessages.scrollHeight;
+
+                // Simulate response after 1 second
+                setTimeout(() => {
+                    const responseElement = document.createElement('div');
+                    responseElement.className = 'message system';
+                    const response = getResponse(message);
+                    responseElement.innerHTML = `
+                        <p>${response}</p>
+                        <span class="message-time">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                    `;
+                    messagingMessages.appendChild(responseElement);
+                    messagingMessages.scrollTop = messagingMessages.scrollHeight;
+                }, 1000);
+            }
+        }
+
+        sendMessage.addEventListener('click', sendUserMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendUserMessage();
+            }
+        });
+    </script>
+  </body>
+</html>

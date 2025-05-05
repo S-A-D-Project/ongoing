@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Management - OPSMS</title>
+    <link rel="stylesheet" href="sub-admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="sub-admin-container">
+        <!-- Sidebar Overlay for Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="document.querySelector('.sidebar').classList.remove('sidebar-open'); this.style.display='none';"></div>
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../images/Gemini_Generated_Image_wafkqlwafkqlwafk.PNG" alt="Printing Services Logo" style="height:40px;">
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="order-management.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Order Management</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="product-management.html">
+                            <i class="fas fa-box"></i>
+                            <span>Product Management</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="tracking-management.html">
+                            <i class="fas fa-truck"></i>
+                            <span>Tracking Management</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../login.html" class="btn btn-outline">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <button class="hamburger" id="sidebarToggle" aria-label="Open sidebar"><i class="fas fa-bars"></i></button>
+                <div class="header-left">
+                    <h1>Tracking Management</h1>
+                    <p class="welcome-text">Track and manage deliveries here.</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-container">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search tracking...">
+                    </div>
+                    <div class="user-actions">
+                        <button class="btn-icon notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge">3</span>
+                        </button>
+                        <div class="user-profile" id="userProfileDropdown">
+                            <img src="https://via.placeholder.com/40" alt="Profile">
+                            <div class="profile-info">
+                                <span class="username">Admin User</span>
+                                <span class="role">Sub Admin</span>
+                            </div>
+                            <i class="fas fa-caret-down"></i>
+                            <div class="dropdown-menu" id="dropdownMenu">
+                                <a href="#" class="dropdown-item"><i class="fas fa-user"></i> Profile</a>
+                                <a href="#" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="../login.html" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <!-- Tracking Management Content Here -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h2>All Tracking</h2>
+                        <a href="#" class="btn btn-outline"><i class="fas fa-plus"></i> Add Tracking</a>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Tracking #</th>
+                                    <th>Order #</th>
+                                    <th>Status</th>
+                                    <th>Last Update</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="trackingTableBody">
+                                <!-- Tracking rows will be dynamically loaded here -->
+                                <tr data-tracking-id="TRK-001" data-order="#1001" data-status="Ready for Pickup" data-update="2024-05-01 14:30">
+                                    <td>TRK-001</td>
+                                    <td>#1001</td>
+                                    <td><span class="status-badge ready">Ready for Pickup</span></td>
+                                    <td>2024-05-01 14:30</td>
+                                    <td class="actions">
+                                        <button class="action-btn update-status-btn" title="Update Status"><i class="fas fa-sync-alt"></i></button>
+                                        <button class="action-btn view-btn" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn edit-btn" title="Edit"><i class="fas fa-pen"></i></button>
+                                        <button class="action-btn delete-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr data-tracking-id="TRK-002" data-order="#1000" data-status="Completed" data-update="2024-04-30 10:15">
+                                    <td>TRK-002</td>
+                                    <td>#1000</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                    <td>2024-04-30 10:15</td>
+                                    <td class="actions">
+                                        <!-- Update Status button hidden for completed -->
+                                        <button class="action-btn view-btn" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn edit-btn" title="Edit"><i class="fas fa-pen"></i></button>
+                                        <button class="action-btn delete-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <!-- Add more sample rows or load dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+    // Sidebar toggle for mobile
+    document.getElementById('sidebarToggle').onclick = function() {
+        document.querySelector('.sidebar').classList.add('sidebar-open');
+        document.getElementById('sidebarOverlay').style.display = 'block';
+    };
+    // User dropdown toggle
+    const userProfile = document.getElementById('userProfileDropdown');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    userProfile.onclick = function(e) {
+        e.stopPropagation();
+        dropdownMenu.classList.toggle('show');
+    };
+    document.addEventListener('click', function(e) {
+        if (!userProfile.contains(e.target)) {
+            dropdownMenu.classList.remove('show');
+        }
+    });
+    // Helper to fill modals with row data
+    function getRowData(btn) {
+        const row = btn.closest('tr');
+        return {
+            id: row.getAttribute('data-tracking-id'),
+            order: row.getAttribute('data-order'),
+            status: row.getAttribute('data-status'),
+            update: row.getAttribute('data-update')
+        };
+    }
+    // Helper to close modals
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    }
+
+    document.querySelectorAll('.view-btn').forEach(btn => {
+        btn.onclick = function() {
+            const data = getRowData(btn);
+            document.querySelector('#viewTrackingModal .modal-body').innerHTML = `
+                <strong>Tracking #:</strong> ${data.id}<br>
+                <strong>Order #:</strong> ${data.order}<br>
+                <strong>Status:</strong> ${data.status}<br>
+                <strong>Last Update:</strong> ${data.update}
+            `;
+            document.getElementById('viewTrackingModal').style.display = 'flex';
+            // Attach close event
+            document.querySelector('#viewTrackingModal .close-view-modal').onclick = function() {
+                closeModal('viewTrackingModal');
+            };
+        };
+    });
+
+    // Shopee-like status stepper for Edit Tracking
+    const statusSteps = [
+        'Pending',
+        'Processing',
+        'Ready for Pickup',
+        'Completed'
+    ];
+    function renderStatusStepper(currentStatus) {
+        const stepper = document.getElementById('statusStepper');
+        stepper.innerHTML = '';
+        let reached = false;
+        statusSteps.forEach((step, idx) => {
+            const stepDiv = document.createElement('div');
+            stepDiv.className = 'step' + (step === currentStatus ? ' active' : '') + (reached ? ' done' : '');
+            stepDiv.textContent = step;
+            stepDiv.onclick = function() {
+                renderStatusStepper(step);
+            };
+            if (step === currentStatus) reached = true;
+            stepper.appendChild(stepDiv);
+            if (idx < statusSteps.length - 1) {
+                const connector = document.createElement('div');
+                connector.className = 'step-connector';
+                stepper.appendChild(connector);
+            }
+        });
+        // Store selected status for saving
+        stepper.setAttribute('data-selected', currentStatus);
+    }
+    // Edit button logic
+    const editBtns = document.querySelectorAll('.edit-btn');
+    editBtns.forEach(btn => {
+        btn.onclick = function() {
+            const row = btn.closest('tr');
+            document.getElementById('editTrackingId').textContent = row.getAttribute('data-tracking-id');
+            document.getElementById('editOrderId').textContent = row.getAttribute('data-order');
+            document.getElementById('editLastUpdate').textContent = row.getAttribute('data-update');
+            const currentStatus = row.getAttribute('data-status');
+            renderStatusStepper(currentStatus);
+            document.getElementById('editTrackingModal').style.display = 'flex';
+        };
+    });
+    document.getElementById('saveEditTracking').onclick = function() {
+        const stepper = document.getElementById('statusStepper');
+        const selectedStatus = stepper.getAttribute('data-selected');
+        // Find the row and update status
+        const trackingId = document.getElementById('editTrackingId').textContent;
+        const row = Array.from(document.querySelectorAll('tr[data-tracking-id]')).find(r => r.getAttribute('data-tracking-id') === trackingId);
+        if (row) {
+            row.setAttribute('data-status', selectedStatus);
+            const statusCell = row.querySelector('td:nth-child(3) span');
+            statusCell.textContent = selectedStatus;
+            statusCell.className = 'status-badge ' + (statusBadgeClass[selectedStatus] || '');
+            showNotification('Order status updated to ' + selectedStatus + '!', 'success');
+        }
+        document.getElementById('editTrackingModal').style.display = 'none';
+    };
+
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.onclick = function() {
+            const data = getRowData(btn);
+            document.querySelector('#deleteTrackingModal .modal-body').innerHTML = `
+                Are you sure you want to delete tracking <strong>${data.id}</strong>?<br>
+                <small>Order #: ${data.order}, Status: ${data.status}</small>
+            `;
+            document.getElementById('deleteTrackingModal').style.display = 'flex';
+            // Attach cancel event
+            document.querySelector('#deleteTrackingModal .close-delete-modal').onclick = function() {
+                closeModal('deleteTrackingModal');
+            };
+            // Attach delete event
+            document.querySelector('#deleteTrackingModal .btn.btn-danger').onclick = function(e) {
+                e.preventDefault();
+                alert('Tracking deleted (frontend only)!');
+                closeModal('deleteTrackingModal');
+            };
+        };
+    });
+
+    // Enhance: One-click status update
+    const statusOrder = [
+        'Pending',
+        'Processing',
+        'Ready for Pickup',
+        'Completed'
+    ];
+    const statusBadgeClass = {
+        'Pending': 'pending',
+        'Processing': 'processing',
+        'Ready for Pickup': 'ready',
+        'Completed': 'completed'
+    };
+    function getNextStatus(current) {
+        const idx = statusOrder.indexOf(current);
+        if (idx === -1 || idx === statusOrder.length - 1) return current;
+        return statusOrder[idx + 1];
+    }
+    document.querySelectorAll('.update-status-btn').forEach(btn => {
+        btn.onclick = function() {
+            const row = btn.closest('tr');
+            const statusCell = row.querySelector('td:nth-child(3) span');
+            let currentStatus = statusCell.textContent.trim();
+            const nextStatus = getNextStatus(currentStatus);
+            if (nextStatus !== currentStatus) {
+                statusCell.textContent = nextStatus;
+                statusCell.className = 'status-badge ' + (statusBadgeClass[nextStatus] || '');
+                row.setAttribute('data-status', nextStatus);
+                showNotification('Order status updated to ' + nextStatus + '!', 'success');
+                // Hide update-status-btn if completed
+                if (nextStatus === 'Completed') {
+                    btn.style.display = 'none';
+                }
+            } else {
+                showNotification('Order is already completed.', 'info');
+            }
+        };
+    });
+    document.querySelectorAll('tr[data-tracking-id]').forEach(row => {
+        if (row.getAttribute('data-status') === 'Completed') {
+            const updateBtn = row.querySelector('.update-status-btn');
+            if (updateBtn) updateBtn.style.display = 'none';
+        }
+    });
+    function showNotification(msg, type) {
+        const notif = document.createElement('div');
+        notif.className = 'notification ' + (type || 'info');
+        notif.textContent = msg;
+        document.body.appendChild(notif);
+        setTimeout(() => {
+            notif.classList.add('fade');
+            setTimeout(() => notif.remove(), 400);
+        }, 1200);
+    }
+    // QR code scan simulation
+    const scanQRBtn = document.getElementById('scanQRBtn');
+    scanQRBtn.onclick = function() {
+        // Simulate QR scan and set status to Completed
+        renderStatusStepper('Completed');
+        showNotification('QR code scanned! Order marked as Completed.', 'success');
+    };
+    // Close modal logic
+    const closeEditBtns = document.querySelectorAll('.close-edit-modal');
+    closeEditBtns.forEach(btn => {
+        btn.onclick = function() {
+            document.getElementById('editTrackingModal').style.display = 'none';
+        };
+    });
+    </script>
+    <style>
+    /* Responsive Table */
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 600px;
+    }
+    .data-table th, .data-table td {
+        padding: 0.85rem 1rem;
+        text-align: left;
+        border-bottom: 1px solid #e5e7eb;
+        font-size: 1rem;
+    }
+    .data-table th {
+        background: #f3f4f6;
+        font-weight: 600;
+        color: #374151;
+    }
+    .status-badge {
+        display: inline-block;
+        padding: 0.4em 1em;
+        border-radius: 1.2em;
+        font-size: 0.95em;
+        font-weight: 600;
+        background: #e5e7eb;
+        color: #374151;
+        transition: background 0.2s, color 0.2s;
+    }
+    .status-badge.pending { background: #fef3c7; color: #b45309; }
+    .status-badge.processing { background: #dbeafe; color: #1d4ed8; }
+    .status-badge.ready { background: #f0fdf4; color: #059669; }
+    .status-badge.completed { background: #e0e7ff; color: #3730a3; }
+    .actions { display: flex; gap: 0.5rem; align-items: center; }
+    .action-btn {
+        background: #18192a;
+        border: 2px solid #6c63ff;
+        color: #bcbcff;
+        border-radius: 0.5rem;
+        padding: 0.5rem 0.7rem;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s, border 0.2s;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .action-btn:hover {
+        background: #6c63ff;
+        color: #fff;
+        border-color: #bcbcff;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.4);
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+    }
+    .modal-content {
+        background: #fff;
+        border-radius: 8px;
+        padding: 2rem;
+        min-width: 320px;
+        max-width: 90vw;
+        position: relative;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+    .btn {
+        padding: 0.7rem 1.3rem;
+        border-radius: 0.7rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        margin: 0.2rem;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        background: #6c63ff;
+        color: #fff;
+    }
+    .btn-outline {
+        background: #fff;
+        color: #6c63ff;
+        border: 2px solid #6c63ff;
+    }
+    .btn-outline:hover {
+        background: #6c63ff;
+        color: #fff;
+    }
+    .btn-danger {
+        background: #ef4444;
+        color: #fff;
+    }
+    .btn-danger:hover {
+        background: #dc2626;
+    }
+    .notification {
+        position: fixed;
+        top: 1.5rem;
+        right: 1.5rem;
+        background: #fff;
+        color: #6c63ff;
+        border-radius: 0.75rem;
+        box-shadow: 0 4px 16px rgba(108,99,255,0.13);
+        padding: 1rem 1.5rem;
+        font-weight: 600;
+        z-index: 2000;
+        opacity: 1;
+        transition: opacity 0.4s, transform 0.4s;
+    }
+    .notification.success { color: #10b981; }
+    .notification.info { color: #6c63ff; }
+    .notification.fade { opacity: 0; transform: translateY(-10px); }
+    </style>
+    <!-- View Modal -->
+    <div class="modal" id="viewTrackingModal" style="display:none;">
+        <div class="modal-content">
+            <h2>View Tracking</h2>
+            <div class="modal-body">Tracking details here...</div>
+            <button class="btn btn-outline close-view-modal">Close</button>
+        </div>
+    </div>
+    <!-- Edit Modal -->
+    <div class="modal" id="editTrackingModal" style="display:none;">
+        <div class="modal-content">
+            <button class="close-modal close-edit-modal" style="position:absolute;top:1rem;right:1rem;font-size:1.5rem;background:none;border:none;cursor:pointer;color:#888;">&times;</button>
+            <h2>Edit Tracking</h2>
+            <div class="modal-body">
+                <form id="editTrackingForm">
+                    <div><strong>Tracking #:</strong> <span id="editTrackingId"></span></div><br>
+                    <div><strong>Order #:</strong> <span id="editOrderId"></span></div><br>
+                    <div><strong>Last Update:</strong> <span id="editLastUpdate"></span></div><br>
+                    <label>Status</label>
+                    <div class="status-stepper" id="statusStepper">
+                        <!-- Steps will be rendered here -->
+                    </div>
+                    <button type="button" class="btn btn-primary" id="scanQRBtn" style="margin-top:1rem;">Scan QR to Complete</button>
+                </form>
+            </div>
+            <button class="btn btn-outline close-edit-modal">Cancel</button>
+            <button class="btn" id="saveEditTracking">Save</button>
+        </div>
+    </div>
+    <!-- Delete Modal -->
+    <div class="modal" id="deleteTrackingModal" style="display:none;">
+        <div class="modal-content">
+            <h2>Delete Tracking</h2>
+            <div class="modal-body">Are you sure you want to delete this tracking entry?</div>
+            <button class="btn btn-outline close-delete-modal">Cancel</button>
+            <button class="btn btn-danger">Delete</button>
+        </div>
+    </div>
+</body>
+</html> 

@@ -1,348 +1,942 @@
-<!DOCTYPE html>
+u<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Tracking Update</title>
+    <title>Admin Dashboard - Print It Now</title>
     <link rel="stylesheet" href="sub-admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
+    <div class="sub-admin-container">
         <!-- Sidebar -->
-        <nav class="sidebar">
-            <div class="logo">
-                <h2>Tracking Update</h2>
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-print fa-2x"></i>
+                </div>
             </div>
-            <ul class="nav-links">
-                <li class="active" data-page="dashboard">
-                    <i class="fas fa-home"></i>
-                    <span>Dashboard</span>
-                </li>
-                <li data-page="tracking">
-                    <i class="fas fa-truck"></i>
-                    <span>Update Tracking</span>
-                </li>
-                <li data-page="priority">
-                    <i class="fas fa-star"></i>
-                    <span>Priority Orders</span>
-                </li>
-                <li data-page="history">
-                    <i class="fas fa-history"></i>
-                    <span>Update History</span>
-                </li>
-            </ul>
-            <div class="logout">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Logout</span>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="order-management.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Order Management</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="product-management.html">
+                            <i class="fas fa-box"></i>
+                            <span>Product Management</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tracking-management.html">
+                            <i class="fas fa-truck"></i>
+                            <span>Tracking Management</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="login.html" class="btn btn-outline">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
             </div>
-        </nav>
+        </aside>
 
         <!-- Main Content -->
         <main class="main-content">
-            <header>
-                <div class="header-content">
-                    <h1>Dashboard</h1>
-                    <div class="user-info">
-                        <span class="admin-name">Tracking Manager</span>
-                        <img src="https://via.placeholder.com/40" alt="Admin" class="admin-avatar">
+            <!-- Header -->
+            <header class="content-header">
+                <div class="header-left">
+                    <h1>Dashboard Overview</h1>
+                    <p class="welcome-text">Welcome back, <span id="adminName">John Smith</span>!</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-container">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search...">
+                    </div>
+                    <div class="user-actions">
+                        <button class="notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge">3</span>
+                        </button>
+                        <div class="user-profile" id="userProfileDropdown">
+                            <div class="profile-avatar">
+                                <i class="fas fa-user-tie fa-lg"></i>
+                            </div>
+                            <div class="profile-info">
+                                <span class="username">Admin User</span>
+                                <span class="role">Sub Admin</span>
+                            </div>
+                            <i class="fas fa-caret-down"></i>
+                            <div class="dropdown-menu" id="dropdownMenu">
+                                <a href="#" class="dropdown-item"><i class="fas fa-user"></i> Profile</a>
+                                <a href="#" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="../login.html" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </header>
 
-            <!-- Dashboard Content -->
-            <div class="content-area" id="dashboard">
-                <div class="stats-container">
-                    <div class="stat-card">
-                        <i class="fas fa-truck"></i>
-                        <div class="stat-info">
-                            <h3>Pending Updates</h3>
-                            <p>15</p>
-                        </div>
+            <!-- Dashboard Stats -->
+            <section class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shopping-cart"></i>
                     </div>
-                    <div class="stat-card">
-                        <i class="fas fa-check-circle"></i>
-                        <div class="stat-info">
-                            <h3>Updated Today</h3>
-                            <p>8</p>
-                        </div>
+                    <div class="stat-info">
+                        <h3>Total Orders</h3>
+                        <p>1,234</p>
+                        <span class="stat-trend positive">+12.5% from last month</span>
                     </div>
-                    <div class="stat-card">
-                        <i class="fas fa-exclamation-circle"></i>
-                        <div class="stat-info">
-                            <h3>High Priority</h3>
-                            <p>5</p>
-                        </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-box"></i>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Total Products</h3>
+                        <p>567</p>
+                        <span class="stat-trend positive">+8.3% from last month</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
                         <i class="fas fa-clock"></i>
-                        <div class="stat-info">
-                            <h3>Average Update Time</h3>
-                            <p>2.5 hrs</p>
-                        </div>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Pending Orders</h3>
+                        <p>45</p>
+                        <span class="stat-trend negative">+5.2% from last month</span>
                     </div>
                 </div>
-
-                <div class="dashboard-grid">
-                    <!-- Priority Orders -->
-                    <div class="dashboard-card">
-                        <h2>Priority Orders</h2>
-                        <div class="priority-orders">
-                            <div class="table-container">
-                                <table class="data-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Order ID</th>
-                                            <th>Customer</th>
-                                            <th>Priority</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Priority orders will be dynamically added here -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
                     </div>
-
-                    <!-- Recent Updates -->
-                    <div class="dashboard-card">
-                        <h2>Recent Tracking Updates</h2>
-                        <div class="recent-updates">
-                            <div class="table-container">
-                                <table class="data-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Order ID</th>
-                                            <th>Status</th>
-                                            <th>Updated By</th>
-                                            <th>Time</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Recent updates will be dynamically added here -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Update Status -->
-                    <div class="dashboard-card">
-                        <h2>Update Status</h2>
-                        <div class="update-status">
-                            <div class="status-item">
-                                <span class="status-label">Pending</span>
-                                <div class="status-bar">
-                                    <div class="status-progress" style="width: 30%"></div>
-                                </div>
-                                <span class="status-count">15</span>
-                            </div>
-                            <div class="status-item">
-                                <span class="status-label">In Transit</span>
-                                <div class="status-bar">
-                                    <div class="status-progress" style="width: 45%"></div>
-                                </div>
-                                <span class="status-count">22</span>
-                            </div>
-                            <div class="status-item">
-                                <span class="status-label">Out for Delivery</span>
-                                <div class="status-bar">
-                                    <div class="status-progress" style="width: 60%"></div>
-                                </div>
-                                <span class="status-count">8</span>
-                            </div>
-                            <div class="status-item">
-                                <span class="status-label">Delivered</span>
-                                <div class="status-bar">
-                                    <div class="status-progress" style="width: 90%"></div>
-                                </div>
-                                <span class="status-count">12</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Quick Actions -->
-                    <div class="dashboard-card">
-                        <h2>Quick Actions</h2>
-                        <div class="quick-actions">
-                            <button class="action-btn">
-                                <i class="fas fa-plus"></i>
-                                New Tracking
-                            </button>
-                            <button class="action-btn">
-                                <i class="fas fa-truck"></i>
-                                Bulk Update
-                            </button>
-                            <button class="action-btn">
-                                <i class="fas fa-star"></i>
-                                Set Priority
-                            </button>
-                        </div>
+                    <div class="stat-info">
+                        <h3>Completed Orders</h3>
+                        <p>1,189</p>
+                        <span class="stat-trend positive">+15.7% from last month</span>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <!-- Tracking Content -->
-            <div class="content-area hidden" id="tracking">
+            <!-- Recent Orders -->
+            <section class="dashboard-section">
                 <div class="section-header">
-                    <h2>Update Tracking</h2>
-                </div>
-                <div class="tracking-container">
-                    <div class="tracking-filters">
-                        <div class="form-group">
-                            <label>Order ID</label>
-                            <input type="text" id="orderId" placeholder="Enter Order ID">
-                        </div>
-                        <div class="form-group">
-                            <label>Status</label>
-                            <select id="orderStatus">
-                                <option value="all">All Status</option>
-                                <option value="pending">Pending</option>
-                                <option value="transit">In Transit</option>
-                                <option value="out_for_delivery">Out for Delivery</option>
-                                <option value="delivered">Delivered</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Priority</label>
-                            <select id="orderPriority">
-                                <option value="all">All Priorities</option>
-                                <option value="high">High</option>
-                                <option value="medium">Medium</option>
-                                <option value="low">Low</option>
-                            </select>
-                        </div>
-                        <button class="search-btn">
-                            <i class="fas fa-search"></i>
-                            Search
-                        </button>
-                    </div>
-                    <div class="tracking-results">
-                        <div class="table-container">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Order ID</th>
-                                        <th>Customer</th>
-                                        <th>Status</th>
-                                        <th>Priority</th>
-                                        <th>Last Update</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Tracking results will be dynamically added here -->
-                                </tbody>
-                            </table>
-                        </div>
+                    <h2>Recent Orders</h2>
+                    <div class="header-actions">
+                        <select class="filter-select">
+                            <option value="all">All Orders</option>
+                            <option value="pending">Pending</option>
+                            <option value="processing">Processing</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                        <a href="order-management.html" class="btn btn-outline">
+                            <span>View All</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Product</th>
+                                <th>Customizations</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#12345</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" alt="John Doe" class="customer-avatar">
+                                        <span>John Doe</span>
+                                    </div>
+                                </td>
+                                <td>Custom T-Shirt</td>
+                                <td>Size: L, Color: Blue</td>
+                                <td>₱299.99</td>
+                                <td><span class="status-badge pending">Pending</span></td>
+                                <td class="actions">
+                                    <button class="action-btn view-btn" title="View" onclick="viewOrder('12345')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit-btn" title="Edit" onclick="editOrder('12345')">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn delete-btn" title="Delete" onclick="deleteOrder('12345')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#12346</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <img src="https://ui-avatars.com/api/?name=Jane+Smith&background=random" alt="Jane Smith" class="customer-avatar">
+                                        <span>Jane Smith</span>
+                                    </div>
+                                </td>
+                                <td>Tarpaulin</td>
+                                <td>Size: Large, Text: Welcome</td>
+                                <td>₱199.99</td>
+                                <td><span class="status-badge processing">Processing</span></td>
+                                <td class="actions">
+                                    <button class="action-btn view-btn" title="View" onclick="viewOrder('12346')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit-btn" title="Edit" onclick="editOrder('12346')">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn delete-btn" title="Delete" onclick="deleteOrder('12346')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#12347</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <img src="https://ui-avatars.com/api/?name=Bob+Johnson&background=random" alt="Bob Johnson" class="customer-avatar">
+                                        <span>Bob Johnson</span>
+                                    </div>
+                                </td>
+                                <td>Custom Mug</td>
+                                <td>Color: White, Image: Logo</td>
+                                <td>₱399.99</td>
+                                <td><span class="status-badge ready">Ready for Pickup</span></td>
+                                <td class="actions">
+                                    <button class="action-btn view-btn" title="View" onclick="viewOrder('12347')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit-btn" title="Edit" onclick="editOrder('12347')">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn delete-btn" title="Delete" onclick="deleteOrder('12347')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#12348</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <img src="https://ui-avatars.com/api/?name=Sarah+Wilson&background=random" alt="Sarah Wilson" class="customer-avatar">
+                                        <span>Sarah Wilson</span>
+                                    </div>
+                                </td>
+                                <td>Business Cards</td>
+                                <td>Quantity: 500, Paper: Premium</td>
+                                <td>₱599.99</td>
+                                <td><span class="status-badge completed">Completed</span></td>
+                                <td class="actions">
+                                    <button class="action-btn view-btn" title="View" onclick="viewOrder('12348')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit-btn" title="Edit" onclick="editOrder('12348')">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn delete-btn" title="Delete" onclick="deleteOrder('12348')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#12349</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <img src="https://ui-avatars.com/api/?name=Mike+Brown&background=random" alt="Mike Brown" class="customer-avatar">
+                                        <span>Mike Brown</span>
+                                    </div>
+                                </td>
+                                <td>Banner Stand</td>
+                                <td>Size: 2x3m, Design: Custom</td>
+                                <td>₱1,299.99</td>
+                                <td><span class="status-badge processing">Processing</span></td>
+                                <td class="actions">
+                                    <button class="action-btn view-btn" title="View" onclick="viewOrder('12349')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit-btn" title="Edit" onclick="editOrder('12349')">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn delete-btn" title="Delete" onclick="deleteOrder('12349')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-            <!-- Priority Content -->
-            <div class="content-area hidden" id="priority">
+            <!-- Recent Products -->
+            <section class="dashboard-section">
                 <div class="section-header">
-                    <h2>Priority Orders</h2>
-                </div>
-                <div class="priority-container">
-                    <div class="priority-filters">
-                        <div class="form-group">
-                            <label>Priority Level</label>
-                            <select id="priorityLevel">
-                                <option value="all">All Levels</option>
-                                <option value="high">High</option>
-                                <option value="medium">Medium</option>
-                                <option value="low">Low</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Sort By</label>
-                            <select id="sortBy">
-                                <option value="priority">Priority</option>
-                                <option value="date">Date</option>
-                                <option value="status">Status</option>
-                            </select>
-                        </div>
-                        <button class="search-btn">
-                            <i class="fas fa-filter"></i>
-                            Apply
-                        </button>
-                    </div>
-                    <div class="priority-results">
-                        <div class="table-container">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Order ID</th>
-                                        <th>Customer</th>
-                                        <th>Priority</th>
-                                        <th>Status</th>
-                                        <th>Last Update</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Priority results will be dynamically added here -->
-                                </tbody>
-                            </table>
-                        </div>
+                    <h2>Recent Products</h2>
+                    <div class="header-actions">
+                        <select class="filter-select">
+                            <option value="all">All Products</option>
+                            <option value="tshirts">T-Shirts</option>
+                            <option value="tarpaulin">Tarpaulin</option>
+                            <option value="mugs">Mugs</option>
+                            <option value="cards">Business Cards</option>
+                            <option value="banners">Banners</option>
+                        </select>
+                        <a href="product-management.html" class="btn btn-outline">
+                            <span>View All</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
-
-            <!-- History Content -->
-            <div class="content-area hidden" id="history">
-                <div class="section-header">
-                    <h2>Update History</h2>
-                </div>
-                <div class="history-container">
-                    <div class="history-filters">
-                        <div class="form-group">
-                            <label>Date Range</label>
-                            <select id="dateRange">
-                                <option value="today">Today</option>
-                                <option value="week">This Week</option>
-                                <option value="month">This Month</option>
-                                <option value="custom">Custom Range</option>
-                            </select>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Custom T-Shirt" class="product-image">
+                            <span class="product-stock">In Stock: 150</span>
                         </div>
-                        <div class="form-group">
-                            <label>Updated By</label>
-                            <select id="updatedBy">
-                                <option value="all">All Users</option>
-                                <option value="me">Me</option>
-                            </select>
-                        </div>
-                        <button class="search-btn">
-                            <i class="fas fa-filter"></i>
-                            Apply
-                        </button>
-                    </div>
-                    <div class="history-results">
-                        <div class="table-container">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Order ID</th>
-                                        <th>Status</th>
-                                        <th>Updated By</th>
-                                        <th>Date & Time</th>
-                                        <th>Notes</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- History results will be dynamically added here -->
-                                </tbody>
-                            </table>
+                        <div class="product-info">
+                            <h3>Custom T-Shirt</h3>
+                            <p>Available in multiple sizes and colors</p>
+                            <div class="product-meta">
+                                <p class="product-price">₱299.99</p>
+                                <span class="product-category">Apparel</span>
+                            </div>
                         </div>
                     </div>
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1588668219995-d3fcd708d51a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Tarpaulin" class="product-image">
+                            <span class="product-stock">In Stock: 75</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>Tarpaulin</h3>
+                            <p>High-quality printing for banners</p>
+                            <div class="product-meta">
+                                <p class="product-price">₱199.99</p>
+                                <span class="product-category">Banners</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Custom Mug" class="product-image">
+                            <span class="product-stock">In Stock: 200</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>Custom Mug</h3>
+                            <p>Personalized ceramic mugs</p>
+                            <div class="product-meta">
+                                <p class="product-price">₱399.99</p>
+                                <span class="product-category">Mugs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1607083206968-13611e3d76db?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Business Cards" class="product-image">
+                            <span class="product-stock">In Stock: 1000</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>Business Cards</h3>
+                            <p>Premium quality business cards</p>
+                            <div class="product-meta">
+                                <p class="product-price">₱599.99</p>
+                                <span class="product-category">Cards</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1588668219995-d3fcd708d51a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Banner Stand" class="product-image">
+                            <span class="product-stock">In Stock: 25</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>Banner Stand</h3>
+                            <p>Professional display stands</p>
+                            <div class="product-meta">
+                                <p class="product-price">₱1,299.99</p>
+                                <span class="product-category">Banners</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1588668219995-d3fcd708d51a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Stickers" class="product-image">
+                            <span class="product-stock">In Stock: 500</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>Custom Stickers</h3>
+                            <p>Vinyl stickers for any purpose</p>
+                            <div class="product-meta">
+                                <p class="product-price">₱199.99</p>
+                                <span class="product-category">Stickers</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
         </main>
     </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="sidebar-overlay"></div>
+
     <script src="sub-admin.js"></script>
+    <script>
+    // Dropdown accessibility: close when clicking outside
+    document.addEventListener('DOMContentLoaded', function() {
+        const userProfile = document.getElementById('userProfileDropdown');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        userProfile.onclick = function(e) {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        };
+        document.addEventListener('click', function(e) {
+            if (!userProfile.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    });
+    </script>
+    <style>
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 110%;
+        background: #fff;
+        border-radius: 0.75rem;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        min-width: 160px;
+        z-index: 100;
+        padding: 0.5rem 0;
+        animation: fadeIn 0.2s;
+    }
+    .dropdown-menu.show { display: block; }
+    .dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.7rem 1.2rem;
+        color: #4f46e5;
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 0.5rem;
+        transition: background 0.2s;
+    }
+    .dropdown-item:hover {
+        background: #f3f4f6;
+    }
+    .modal-content {
+        border-radius: 0.75rem !important;
+        box-shadow: 0 8px 32px rgba(37,99,235,0.13) !important;
+        padding: 2rem !important;
+    }
+    .stat-trend {
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+        display: block;
+    }
+    .stat-trend.positive {
+        color: #10b981;
+    }
+    .stat-trend.negative {
+        color: #ef4444;
+    }
+    .header-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+    .filter-select {
+        padding: 0.5rem 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        background: white;
+        font-size: 0.9rem;
+        color: #374151;
+    }
+    .customer-info {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    .customer-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .product-image-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 0.5rem;
+    }
+    .product-stock {
+        position: absolute;
+        bottom: 0.5rem;
+        right: 0.5rem;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.8rem;
+    }
+    .product-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0.5rem;
+    }
+    .product-category {
+        font-size: 0.8rem;
+        color: #6b7280;
+        background: #f3f4f6;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+    }
+    .action-btn {
+        padding: 0.5rem;
+        border: none;
+        background: none;
+        color: #6b7280;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+    .action-btn:hover {
+        color: #2563eb;
+    }
+    .action-btn.edit-btn:hover {
+        color: #059669;
+    }
+    .action-btn.delete-btn:hover {
+        color: #dc2626;
+    }
+    .status-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    .status-badge.pending {
+        background: #fef3c7;
+        color: #92400e;
+    }
+    .status-badge.processing {
+        background: #dbeafe;
+        color: #1e40af;
+    }
+    .status-badge.ready {
+        background: #dcfce7;
+        color: #166534;
+    }
+    .status-badge.completed {
+        background: #f3f4f6;
+        color: #374151;
+    }
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    .product-card {
+        background: white;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .product-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .product-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    .product-info {
+        padding: 1rem;
+    }
+    .product-info h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.1rem;
+        color: #1f2937;
+    }
+    .product-info p {
+        margin: 0 0 0.75rem 0;
+        font-size: 0.9rem;
+        color: #6b7280;
+    }
+    </style>
+
+    <!-- Messaging Widget -->
+    <div class="messaging-widget" style="display: block !important;">
+        <div class="messaging-header" id="messagingHeader">
+            <div class="messaging-title">
+                <i class="fas fa-comments"></i>
+                <span>Customer Support</span>
+            </div>
+            <button class="messaging-minimize" id="messagingMinimize">
+                <i class="fas fa-minus"></i>
+            </button>
+        </div>
+        <div class="messaging-body" id="messagingBody">
+            <div class="messaging-messages" id="messagingMessages">
+                <div class="message system">
+                    <p>Hi! I need help with my order #12345</p>
+                    <span class="message-time">10:00 AM</span>
+                </div>
+                <div class="message user">
+                    <p>👋 Hello! I'm Sarah from Print It Now Support. I'll help you check your order status right away.</p>
+                    <span class="message-time">10:01 AM</span>
+                </div>
+                <div class="message system">
+                    <p>Yes, please. I ordered a Custom T-Shirt yesterday.</p>
+                    <span class="message-time">10:02 AM</span>
+                </div>
+                <div class="message user">
+                    <p>I can see your order #12345 (Custom T-Shirt) is currently being processed. Here's the timeline:</p>
+                    <ul style="margin: 5px 0; padding-left: 20px;">
+                        <li>Order Placed: Yesterday</li>
+                        <li>Current Status: Processing</li>
+                        <li>Estimated Completion: Tomorrow</li>
+                    </ul>
+                    <p>Would you like me to provide more details about your order?</p>
+                    <span class="message-time">10:03 AM</span>
+                </div>
+            </div>
+            <div class="messaging-input">
+                <input type="text" id="messageInput" placeholder="Type your message...">
+                <button id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+        <button class="messaging-toggle" id="messagingToggle" style="display: none;">
+            <i class="fas fa-comments"></i>
+        </button>
+    </div>
+
+    <style>
+        .messaging-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .messaging-header {
+            background: #2563eb;
+            color: white;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .messaging-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .messaging-minimize {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .messaging-body {
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .messaging-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #f8fafc;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .message.system {
+            align-self: flex-start;
+            background: white;
+            color: #1f2937;
+            border: 1px solid #e5e7eb;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: #2563eb;
+            color: white;
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .messaging-input {
+            padding: 12px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 8px;
+            background: white;
+        }
+
+        .messaging-input input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .messaging-input input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+
+        .messaging-input button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .messaging-input button:hover {
+            background: #1d4ed8;
+        }
+
+        .messaging-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s;
+            z-index: 9999;
+        }
+
+        .messaging-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        .messaging-widget.hidden {
+            transform: translateY(100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .messaging-widget.minimized .messaging-body {
+            display: none;
+        }
+    </style>
+
+    <script>
+        // Messaging Widget Functionality
+        const messagingWidget = document.querySelector('.messaging-widget');
+        const messagingToggle = document.getElementById('messagingToggle');
+        const messagingMinimize = document.getElementById('messagingMinimize');
+        const messagingHeader = document.getElementById('messagingHeader');
+        const messagingBody = document.getElementById('messagingBody');
+        const messageInput = document.getElementById('messageInput');
+        const sendMessage = document.getElementById('sendMessage');
+        const messagingMessages = document.getElementById('messagingMessages');
+
+        // Sample responses based on user message
+        const sampleResponses = {
+            default: [
+                "I'm here to help with your order. What would you like to know?",
+                "I can assist you with order status, tracking, or any other inquiries. How can I help?",
+                "Welcome to Print It Now Support. How can I assist you today?"
+            ],
+            order: [
+                "I can help you track your order. Could you please provide your order number?",
+                "For order status updates, please share your order reference number.",
+                "I'll help you check your order status. What's your order number?"
+            ],
+            tracking: [
+                "I can help you track your shipment. Do you have your tracking number?",
+                "For real-time tracking updates, please provide your tracking ID.",
+                "I'll check the status of your delivery. Could you share your tracking number?"
+            ],
+            product: [
+                "We offer a wide range of printing services. What type of product are you interested in?",
+                "I can provide details about our products and services. What would you like to know?",
+                "We have various printing options available. What are you looking to print?"
+            ],
+            price: [
+                "I can provide pricing information for our services. What product are you interested in?",
+                "Let me check our current rates for you. What type of printing do you need?",
+                "I'll help you with pricing details. What's the product you're looking for?"
+            ],
+            delivery: [
+                "We offer both pickup and delivery options. Which would you prefer?",
+                "I can help you with delivery arrangements. What's your preferred method?",
+                "Let me check our delivery options for you. What's your location?"
+            ]
+        };
+
+        // Toggle widget visibility
+        messagingToggle.addEventListener('click', () => {
+            messagingWidget.classList.remove('hidden');
+            messagingToggle.style.display = 'none';
+        });
+
+        // Minimize widget
+        messagingMinimize.addEventListener('click', (e) => {
+            e.stopPropagation();
+            messagingWidget.classList.add('minimized');
+            messagingToggle.style.display = 'flex';
+        });
+
+        // Restore widget
+        messagingHeader.addEventListener('click', () => {
+            if (messagingWidget.classList.contains('minimized')) {
+                messagingWidget.classList.remove('minimized');
+                messagingToggle.style.display = 'none';
+            }
+        });
+
+        // Get appropriate response based on user message
+        function getResponse(message) {
+            message = message.toLowerCase();
+            if (message.includes('order') || message.includes('status')) {
+                return sampleResponses.order[Math.floor(Math.random() * sampleResponses.order.length)];
+            } else if (message.includes('track') || message.includes('shipment')) {
+                return sampleResponses.tracking[Math.floor(Math.random() * sampleResponses.tracking.length)];
+            } else if (message.includes('product') || message.includes('service')) {
+                return sampleResponses.product[Math.floor(Math.random() * sampleResponses.product.length)];
+            } else if (message.includes('price') || message.includes('cost')) {
+                return sampleResponses.price[Math.floor(Math.random() * sampleResponses.price.length)];
+            } else if (message.includes('delivery') || message.includes('pickup')) {
+                return sampleResponses.delivery[Math.floor(Math.random() * sampleResponses.delivery.length)];
+            } else {
+                return sampleResponses.default[Math.floor(Math.random() * sampleResponses.default.length)];
+            }
+        }
+
+        // Send message
+        function sendUserMessage() {
+            const message = messageInput.value.trim();
+            if (message) {
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message system';
+                messageElement.innerHTML = `
+                    <p>${message}</p>
+                    <span class="message-time">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                `;
+                messagingMessages.appendChild(messageElement);
+                messageInput.value = '';
+                messagingMessages.scrollTop = messagingMessages.scrollHeight;
+
+                // Simulate response after 1 second
+                setTimeout(() => {
+                    const responseElement = document.createElement('div');
+                    responseElement.className = 'message user';
+                    const response = getResponse(message);
+                    responseElement.innerHTML = `
+                        <p>${response}</p>
+                        <span class="message-time">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                    `;
+                    messagingMessages.appendChild(responseElement);
+                    messagingMessages.scrollTop = messagingMessages.scrollHeight;
+                }, 1000);
+            }
+        }
+
+        sendMessage.addEventListener('click', sendUserMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendUserMessage();
+            }
+        });
+
+        // Additional functionality for enhanced prototype
+        function viewOrder(orderId) {
+            alert(`Viewing order #${orderId}`);
+        }
+
+        function editOrder(orderId) {
+            alert(`Editing order #${orderId}`);
+        }
+
+        function deleteOrder(orderId) {
+            if (confirm(`Are you sure you want to delete order #${orderId}?`)) {
+                alert(`Order #${orderId} deleted successfully`);
+            }
+        }
+
+        // Filter functionality
+        document.querySelectorAll('.filter-select').forEach(select => {
+            select.addEventListener('change', function() {
+                alert(`Filtering by: ${this.value}`);
+            });
+        });
+    </script>
 </body>
 </html> 

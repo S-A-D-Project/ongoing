@@ -3,36 +3,904 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Customize Tarpaulin / Banner</title>
-  <link rel="stylesheet" href="customize-tarpaulin.css">
+  <title>Customize Your Tarp - Printing Services</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --primary-dark: #1d4ed8;
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --text-light: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+      --success-color: #22c55e;
+      --error-color: #ef4444;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body { 
+      background: var(--bg-dark); 
+      color: var(--text-light); 
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .customization-container {
+      background: var(--bg-card);
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.5rem;
+      border-radius: 24px;
+      box-shadow: var(--shadow-lg);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1.5rem;
+      min-height: calc(100vh - 80px);
+    }
+
+    .preview-section {
+      position: sticky;
+      top: 1rem;
+      height: calc(100vh - 2rem);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .preview-area {
+      background: var(--bg-dark);
+      border: 2px dashed var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 0;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .preview-area:hover {
+      border-color: var(--primary-color);
+    }
+
+    #preview {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+      background: var(--bg-card);
+      border: 2px solid var(--primary-color);
+      transition: all 0.3s ease;
+    }
+
+    .form-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      overflow-y: auto;
+      max-height: calc(100vh - 2rem);
+      padding-right: 0.5rem;
+    }
+
+    .form-section::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .form-section::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+      border-radius: 3px;
+    }
+
+    .form-section::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 3px;
+    }
+
+    .form-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    select, input[type="file"], input[type="number"], textarea {
+      width: 100%;
+      padding: 0.875rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-dark);
+      color: var(--text-light);
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    select:hover, input[type="file"]:hover, input[type="number"]:hover, textarea:hover {
+      border-color: var(--primary-color);
+    }
+
+    select:focus, input[type="file"]:focus, input[type="number"]:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    }
+
+    .preview-controls, .edit-controls {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0.75rem;
+      background: var(--bg-card);
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .preview-controls button, .edit-controls button {
+      padding: 0.75rem 1rem;
+      background: var(--bg-dark);
+      color: var(--text-light);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      min-width: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .preview-controls button:hover, .edit-controls button:hover {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+      transform: translateY(-1px);
+    }
+
+    .preview-controls button.active {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+
+    .price-summary {
+      background: var(--bg-dark);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .price-details {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .price-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 1.1rem;
+    }
+
+    .price-item.total {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 2px solid var(--border-color);
+    }
+
+    .checkout-section {
+      background: var(--bg-dark);
+      border-radius: 16px;
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .checkout-section h3 {
+      margin: 0 0 1rem 0;
+      font-size: 1.2rem;
+      color: var(--text-light);
+    }
+
+    .payment-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .payment-option {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 1.25rem;
+      border: 1px solid var(--border-color);
+      transition: all 0.2s ease;
+    }
+
+    .payment-option:hover {
+      border-color: var(--primary-color);
+      transform: translateY(-1px);
+    }
+
+    .payment-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .payment-label:hover {
+      background: rgba(37, 99, 235, 0.1);
+    }
+
+    .payment-details {
+      margin-top: 1rem;
+      margin-left: 1.5rem;
+      display: none;
+    }
+
+    .payment-option input[type="radio"]:checked + .payment-label + .payment-details {
+      display: block;
+    }
+
+    .payment-method {
+      margin: 0.75rem 0;
+      padding: 0.75rem;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .payment-method:hover {
+      background: rgba(37, 99, 235, 0.1);
+    }
+
+    .payment-icon {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .delivery-options {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .delivery-options h4 {
+      margin: 0 0 1rem 0;
+      color: var(--text-light);
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-light);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 1rem;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 1.5rem;
+    }
+
+    button[type="submit"]:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      background: var(--border-color);
+      border-radius: 3px;
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 1024px) {
+      .customization-container {
+        grid-template-columns: 1fr;
+        margin: 0.5rem;
+        padding: 1rem;
+      }
+
+      .preview-section {
+        position: static;
+        height: auto;
+      }
+
+      .preview-area {
+        min-height: 400px;
+      }
+
+      .form-section {
+        max-height: none;
+        overflow-y: visible;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .customization-container {
+        margin: 0;
+        border-radius: 0;
+      }
+
+      .preview-area {
+        min-height: 300px;
+      }
+
+      .form-group {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-  <main class="customization-container">
-    <h1>Customize Your Tarpaulin / Banner</h1>
-    <form>
-      <label>Size:
-        <select required>
-          <option>2x3 ft</option>
-          <option>3x5 ft</option>
-          <option>4x6 ft</option>
+  <nav class="navbar">
+    <div class="container">
+      <a href="./" class="logo"><img src="images/Gemini_Generated_Image_wafkqlwafkqlwafk.PNG" alt="Printing Services Logo" style="height:40px;vertical-align:middle;"></a>
+      <div class="nav-links">
+        <a href="./">Home</a>
+        <a href="./track.html">Track Order</a>
+        <a href="./login.html" class="btn btn-outline">Login</a>
+        <a href="./register.html" class="btn btn-primary">Register</a>
+      </div>
+      <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="./">Home</a>
+    <a href="./track.html">Track Order</a>
+    <a href="./login.html">Login</a>
+    <a href="./register.html">Register</a>
+  </div>
+
+  <section class="hero">
+    <div class="customization-container">
+      <div class="preview-section">
+        <div class="preview-area">
+          <span class="size-label" id="sizeLabel">2x3 ft</span>
+          <span class="material-effect" id="materialEffect">Vinyl</span>
+          <img id="preview" src="#" alt="Preview" style="display:none;" />
+          <div class="preview-controls">
+            <button class="active" data-view="front">Front View</button>
+            <button data-view="back">Back View</button>
+            <button data-view="3d">3D View</button>
+          </div>
+          <div class="edit-controls">
+            <button data-edit="rotate-left" title="Rotate Left"><i class="fas fa-undo"></i></button>
+            <button data-edit="rotate-right" title="Rotate Right"><i class="fas fa-redo"></i></button>
+            <button data-edit="flip-h" title="Flip Horizontal"><i class="fas fa-arrows-alt-h"></i></button>
+            <button data-edit="flip-v" title="Flip Vertical"><i class="fas fa-arrows-alt-v"></i></button>
+            <label>
+              <span>Brightness</span>
+              <input type="range" id="brightness" min="0" max="200" value="100">
+            </label>
+            <label>
+              <span>Contrast</span>
+              <input type="range" id="contrast" min="0" max="200" value="100">
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-section">
+      <h2>Customize Your Tarp</h2>
+      <form id="tarpForm">
+        <label for="size">Size:</label>
+        <select id="size" name="size" required>
+          <option value="">Select size</option>
+          <option value="2x3">2x3 ft</option>
+          <option value="3x5">3x5 ft</option>
+          <option value="4x6">4x6 ft</option>
+          <option value="custom">Custom Size</option>
         </select>
-      </label>
-      <label>Material:
-        <select required>
-          <option>Vinyl</option>
-          <option>Mesh</option>
+        <div id="customSizeFields" style="display:none;">
+          <label>Custom Width (ft): <input type="number" id="customWidth" min="1" max="20" step="0.1"></label>
+          <label>Custom Height (ft): <input type="number" id="customHeight" min="1" max="20" step="0.1"></label>
+        </div>
+        <label for="material">Material:</label>
+        <select id="material" name="material" required>
+          <option value="vinyl">Vinyl (default)</option>
+          <option value="mesh">Mesh (+₱50)</option>
+          <option value="canvas">Canvas (+₱100)</option>
         </select>
-      </label>
-      <label>Grommets:
-        <select required>
-          <option>None</option>
-          <option>Standard</option>
+        <label for="grommets">Grommets:</label>
+        <select id="grommets" name="grommets" required>
+          <option value="none">None</option>
+          <option value="standard">Standard (+₱20)</option>
+          <option value="custom">Custom (+₱40)</option>
         </select>
-      </label>
-      <label>Quantity: <input type="number" min="1" value="1" required></label>
-      <label>Special Instructions: <textarea></textarea></label>
-      <button type="submit">Place Order</button>
-    </form>
-  </main>
+        <label for="margin">Excess Margin:</label>
+        <select id="margin" name="margin" required>
+          <option value="none">No Margin</option>
+          <option value="small">Small (2 inches)</option>
+          <option value="medium">Medium (4 inches)</option>
+          <option value="large">Large (6 inches)</option>
+        </select>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+        <label for="instructions">Special Instructions:</label>
+        <textarea id="instructions" name="instructions" rows="2" placeholder="Any special requests?"></textarea>
+        <label for="fileInput">Upload Design:</label>
+        <input type="file" id="fileInput" name="design" accept="image/*" required>
+        <div class="price-summary">
+          <h3>Price Summary</h3>
+          <div class="price-details">
+            <div class="price-item"><span>Base Price</span><span id="basePrice">₱0.00</span></div>
+            <div class="price-item"><span>Material</span><span id="materialPrice">₱0.00</span></div>
+            <div class="price-item"><span>Grommets</span><span id="grommetsPrice">₱0.00</span></div>
+            <div class="price-item"><span>Quantity</span><span id="quantityLabel">1</span></div>
+            <div class="price-item total"><span>Total</span><span id="totalPrice">₱0.00</span></div>
+          </div>
+        </div>
+
+          <div class="checkout-section">
+            <h3>Checkout Information</h3>
+            <div class="form-group full-width">
+              <label for="customerName">Full Name</label>
+              <input type="text" id="customerName" name="customerName" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group full-width">
+              <label for="customerEmail">Email</label>
+              <input type="email" id="customerEmail" name="customerEmail" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group full-width">
+              <label for="customerPhone">Phone Number</label>
+              <input type="tel" id="customerPhone" name="customerPhone" placeholder="Enter your phone number" required>
+            </div>
+
+            <h3>Payment Options</h3>
+            <div class="payment-methods">
+              <div class="payment-option">
+                <input type="radio" id="online" name="payment" value="online" required>
+                <label for="online" class="payment-label">
+                  <i class="fas fa-credit-card"></i>
+                  Online Payment
+                </label>
+                <div class="payment-details" id="onlineDetails">
+                  <div class="payment-method">
+                    <input type="radio" id="gcash" name="onlineMethod" value="gcash">
+                    <label for="gcash">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/GCash_logo.svg/1200px-GCash_logo.svg.png" alt="GCash" class="payment-icon">
+                      GCash
+                    </label>
+                  </div>
+                  <div class="payment-method">
+                    <input type="radio" id="maya" name="onlineMethod" value="maya">
+                    <label for="maya">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Maya_logo.svg/1200px-Maya_logo.svg.png" alt="Maya" class="payment-icon">
+                      Maya
+                    </label>
+                  </div>
+                  <div class="payment-method">
+                    <input type="radio" id="card" name="onlineMethod" value="card">
+                    <label for="card">
+                      <i class="fas fa-credit-card"></i>
+                      Credit/Debit Card
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="payment-option">
+                <input type="radio" id="offline" name="payment" value="offline" required>
+                <label for="offline" class="payment-label">
+                  <i class="fas fa-money-bill-wave"></i>
+                  Cash on Pickup/Delivery
+                </label>
+                <div class="payment-details" id="offlineDetails">
+                  <div class="payment-method">
+                    <input type="radio" id="pickup" name="offlineMethod" value="pickup">
+                    <label for="pickup">
+                      <i class="fas fa-store"></i>
+                      Pay at Store
+                    </label>
+                  </div>
+                  <div class="payment-method">
+                    <input type="radio" id="delivery" name="offlineMethod" value="delivery">
+                    <label for="delivery">
+                      <i class="fas fa-truck"></i>
+                      Cash on Delivery
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="delivery-options" style="display: none;">
+              <h4>Delivery Information</h4>
+              <div class="form-group">
+                <label for="address">Delivery Address:</label>
+                <textarea id="address" name="address" rows="3" placeholder="Enter your complete delivery address"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="contact">Contact Number:</label>
+                <input type="tel" id="contact" name="contact" placeholder="Enter your contact number">
+              </div>
+            </div>
+          </div>
+
+          <button type="submit">Place Order</button>
+      </form>
+      </div>
+    </div>
+  </section>
+  <script>
+    // Pricing logic
+    const PRICE_PER_SQFT = 15; // Base price per square foot
+    const materialPrices = { 'vinyl': 0, 'mesh': 50, 'canvas': 100 };
+    const grommetsPrices = { 'none': 0, 'standard': 20, 'custom': 40 };
+    const marginPrices = { 'none': 0, 'small': 10, 'medium': 20, 'large': 30 };
+
+    function getCustomSizePrice(w, h) {
+      return w * h * PRICE_PER_SQFT;
+    }
+
+    function updatePrice() {
+      let size = document.getElementById('size').value;
+      let base = 0;
+      let sizeLabel = '';
+      
+      if (size === 'custom') {
+        const w = parseFloat(document.getElementById('customWidth').value) || 0;
+        const h = parseFloat(document.getElementById('customHeight').value) || 0;
+        if (w > 0 && h > 0) {
+          base = getCustomSizePrice(w, h);
+          sizeLabel = `${w}x${h} ft`;
+        } else {
+          base = 0;
+          sizeLabel = 'Custom';
+        }
+      } else {
+        // Calculate price based on standard sizes
+        const [width, height] = size.split('x').map(Number);
+        base = width * height * PRICE_PER_SQFT;
+        sizeLabel = document.getElementById('size').options[document.getElementById('size').selectedIndex].text;
+      }
+
+      document.getElementById('basePrice').textContent = `₱${base.toFixed(2)}`;
+      document.getElementById('sizeLabel').textContent = sizeLabel || '--';
+
+      const material = document.getElementById('material').value;
+      const materialPrice = materialPrices[material] || 0;
+      document.getElementById('materialPrice').textContent = `₱${materialPrice.toFixed(2)}`;
+
+      const grommets = document.getElementById('grommets').value;
+      const grommetsPrice = grommetsPrices[grommets] || 0;
+      document.getElementById('grommetsPrice').textContent = `₱${grommetsPrice.toFixed(2)}`;
+
+      const margin = document.getElementById('margin').value;
+      const marginPrice = marginPrices[margin] || 0;
+
+      const quantity = parseInt(document.getElementById('quantity').value) || 1;
+      document.getElementById('quantityLabel').textContent = quantity;
+
+      const total = (base + materialPrice + grommetsPrice + marginPrice) * quantity;
+      document.getElementById('totalPrice').textContent = `₱${total.toFixed(2)}`;
+    }
+
+    // Event Listeners
+    document.getElementById('size').onchange = function() {
+      if (this.value === 'custom') {
+        document.getElementById('customSizeFields').style.display = '';
+      } else {
+        document.getElementById('customSizeFields').style.display = 'none';
+      }
+      updatePrice();
+    };
+
+    document.getElementById('customWidth').oninput = updatePrice;
+    document.getElementById('customHeight').oninput = updatePrice;
+    document.getElementById('material').onchange = updatePrice;
+    document.getElementById('grommets').onchange = updatePrice;
+    document.getElementById('margin').onchange = updatePrice;
+    document.getElementById('quantity').oninput = updatePrice;
+
+    // Preview
+    document.getElementById('fileInput').onchange = function(event) {
+      const [file] = event.target.files;
+      if (file) {
+        const preview = document.getElementById('preview');
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+        updatePreviewEffects();
+      }
+    };
+
+    // Update preview effects based on material and size
+    function updatePreviewEffects() {
+      const material = document.getElementById('material').value;
+      const size = document.getElementById('size').value;
+      const materialEffect = document.getElementById('materialEffect');
+      const preview = document.getElementById('preview');
+      
+      materialEffect.textContent = material.charAt(0).toUpperCase() + material.slice(1);
+      
+      switch(material) {
+        case 'vinyl':
+          preview.style.filter = 'brightness(1.1) contrast(1.1)';
+          break;
+        case 'mesh':
+          preview.style.filter = 'brightness(1.2) contrast(0.9)';
+          break;
+        case 'canvas':
+          preview.style.filter = 'brightness(0.95) contrast(1.05)';
+          break;
+        default:
+          preview.style.filter = 'none';
+      }
+    }
+
+    // Preview controls
+    document.querySelectorAll('.preview-controls button').forEach(button => {
+      button.addEventListener('click', function() {
+        document.querySelectorAll('.preview-controls button').forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        
+        const view = this.dataset.view;
+        const preview = document.getElementById('preview');
+        
+        switch(view) {
+          case 'front':
+            preview.style.transform = 'rotateY(0deg)';
+            break;
+          case 'back':
+            preview.style.transform = 'rotateY(180deg)';
+            break;
+          case '3d':
+            preview.style.transform = 'rotateY(45deg) rotateX(10deg)';
+            break;
+        }
+      });
+    });
+
+    // Edit controls
+    let currentRotation = 0;
+    let isFlippedH = false;
+    let isFlippedV = false;
+
+    document.querySelectorAll('.edit-controls button').forEach(button => {
+      button.addEventListener('click', function() {
+        const preview = document.getElementById('preview');
+        const action = this.dataset.edit;
+
+        switch(action) {
+          case 'rotate-left':
+            currentRotation = (currentRotation - 90) % 360;
+            break;
+          case 'rotate-right':
+            currentRotation = (currentRotation + 90) % 360;
+            break;
+          case 'flip-h':
+            isFlippedH = !isFlippedH;
+            break;
+          case 'flip-v':
+            isFlippedV = !isFlippedV;
+            break;
+        }
+
+        let transform = `rotate(${currentRotation}deg)`;
+        if (isFlippedH) transform += ' scaleX(-1)';
+        if (isFlippedV) transform += ' scaleY(-1)';
+        preview.style.transform = transform;
+      });
+    });
+
+    // Brightness and contrast controls
+    document.getElementById('brightness').addEventListener('input', updateImageFilters);
+    document.getElementById('contrast').addEventListener('input', updateImageFilters);
+
+    function updateImageFilters() {
+      const preview = document.getElementById('preview');
+      const brightness = document.getElementById('brightness').value;
+      const contrast = document.getElementById('contrast').value;
+      const material = document.getElementById('material').value;
+      
+      let filter = `brightness(${brightness}%) contrast(${contrast}%)`;
+      
+      switch(material) {
+        case 'vinyl':
+          filter += ' saturate(1.1)';
+          break;
+        case 'mesh':
+          filter += ' saturate(0.9)';
+          break;
+        case 'canvas':
+          filter += ' saturate(0.95)';
+          break;
+      }
+      
+      preview.style.filter = filter;
+    }
+
+    // Update preview when material or size changes
+    document.getElementById('material').addEventListener('change', updatePreviewEffects);
+    document.getElementById('size').addEventListener('change', updatePreviewEffects);
+
+    // Initial price
+    updatePrice();
+
+    // Form submission
+    document.getElementById('tarpForm').onsubmit = function(e) {
+      e.preventDefault();
+      
+      // Validate customer information
+      const customerName = document.getElementById('customerName').value.trim();
+      const customerEmail = document.getElementById('customerEmail').value.trim();
+      const customerPhone = document.getElementById('customerPhone').value.trim();
+
+      if (!customerName || !customerEmail || !customerPhone) {
+        alert('Please fill in all customer information fields');
+        return;
+      }
+
+      // Validate payment method
+      const paymentMethod = document.querySelector('input[name="payment"]:checked');
+      if (!paymentMethod) {
+        alert('Please select a payment method');
+        return;
+      }
+
+      // Validate online payment method if selected
+      if (paymentMethod.value === 'online') {
+        const onlineMethod = document.querySelector('input[name="onlineMethod"]:checked');
+        if (!onlineMethod) {
+          alert('Please select an online payment method');
+          return;
+        }
+      }
+
+      // Validate offline payment method if selected
+      if (paymentMethod.value === 'offline') {
+        const offlineMethod = document.querySelector('input[name="offlineMethod"]:checked');
+        if (!offlineMethod) {
+          alert('Please select a pickup/delivery option');
+          return;
+        }
+
+        // Validate delivery information if cash on delivery is selected
+        if (offlineMethod.value === 'delivery') {
+          const address = document.getElementById('address').value.trim();
+          const contact = document.getElementById('contact').value.trim();
+          
+          if (!address) {
+            alert('Please enter your delivery address');
+            return;
+          }
+          if (!contact) {
+            alert('Please enter your contact number');
+            return;
+          }
+        }
+      }
+
+      // Get order details
+      const size = document.getElementById('size').value;
+      const material = document.getElementById('material').value;
+      const quantity = document.getElementById('quantity').value;
+      const basePrice = document.getElementById('basePrice').textContent.replace('₱', '');
+      const materialPrice = document.getElementById('materialPrice').textContent.replace('₱', '');
+      const grommetsPrice = document.getElementById('grommetsPrice').textContent.replace('₱', '');
+      const totalPrice = document.getElementById('totalPrice').textContent.replace('₱', '');
+
+      // Generate order number
+      const orderNumber = 'ORD-' + Date.now().toString().slice(-6);
+
+      // Redirect to success page with order details
+      const params = new URLSearchParams({
+        orderNumber: orderNumber,
+        name: customerName,
+        email: customerEmail,
+        phone: customerPhone,
+        product: 'Tarpaulin',
+        size: size,
+        material: material,
+        quantity: quantity,
+        payment: paymentMethod.value === 'online' ? 
+                document.querySelector('input[name="onlineMethod"]:checked').value : 
+                document.querySelector('input[name="offlineMethod"]:checked').value,
+        basePrice: basePrice,
+        materialPrice: materialPrice,
+        grommetsPrice: grommetsPrice,
+        totalPrice: totalPrice
+      });
+
+      window.location.href = `./order-success.html?${params.toString()}`;
+    };
+
+    // Payment method change handlers
+    document.querySelectorAll('input[name="payment"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        const deliveryOptions = document.querySelector('.delivery-options');
+        if (this.value === 'offline') {
+          const offlineMethod = document.querySelector('input[name="offlineMethod"]:checked');
+          if (offlineMethod && offlineMethod.value === 'delivery') {
+            deliveryOptions.style.display = 'block';
+          } else {
+            deliveryOptions.style.display = 'none';
+          }
+        } else {
+          deliveryOptions.style.display = 'none';
+        }
+      });
+    });
+
+    document.querySelectorAll('input[name="offlineMethod"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        const deliveryOptions = document.querySelector('.delivery-options');
+        if (this.value === 'delivery') {
+          deliveryOptions.style.display = 'block';
+        } else {
+          deliveryOptions.style.display = 'none';
+        }
+      });
+    });
+  </script>
 </body>
 </html> 
